@@ -1975,12 +1975,11 @@ class _MyAppState extends State<MyApp> {
       max zoom level = ``20``
       default map layer = ``'https://tile.openstreetmap.org/{z}/{x}/{y}.png'``
   8. Change map layer to sphere map layer and google map layer
-     ```
-     Sphere Basemap > 'https://basemap.sphere.gistda.or.th/tiles/sphere_streets/EPSG3857/{z}/{x}/{y}.png?key=test2022'
-     Sphere Satellite > 'https://basemap.sphere.gistda.or.th/tiles/thailand_images/EPSG3857/{z}/{x}/{y}.jpeg?key=test2022'
-     Google Basemap > 'https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}'
-     Google Satellite > 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
-     ```
+	
+> Sphere Basemap > 'https://basemap.sphere.gistda.or.th/tiles/sphere_streets/EPSG3857/{z}/{x}/{y}.png?key=test2022'    
+	Sphere Satellite > 'https://basemap.sphere.gistda.or.th/tiles/thailand_images/EPSG3857/{z}/{x}/{y}.jpeg?key=test2022'   
+	Google Basemap > 'https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}'   
+	Google Satellite > 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
   9. Add FloatingActionButton for zoom in (level 18) and zoom out (level 6) when tap
   10. Add Marker Layer to show your location on map
   11. Add Button on map for select/switch basemap
@@ -2268,5 +2267,3 @@ class _MyAppState extends State<MyApp> {
 </details>
 	
 </details>
-	
-  
