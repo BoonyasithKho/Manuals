@@ -877,3 +877,1013 @@
      ]),
     ```
 </details>
+
+<details><summary>Map</summary>
+<hr>
+
+## 🗺️ Google Map
+- การติดตั้ง Google Maps for Flutter เบื้องต้น
+  1. ขอ API Key จากลิงค์ https://cloud.google.com/maps-platform/
+  2. ทำการ Enable เพื่อที่จะเรียกใช้ API (Enable Maps SDK for Android / IOS)
+  3. เข้าไปที่เมนู Credentials เพื่อที่จะสร้าง API Key เอาไปแปะในโค้ดให้เชื่อมต่อกับ Google Cloud Platform
+      Create Credentials -> API Key
+- นำ API Key มาใช้
+  - Android : เพิ่ม API Key ที่ไฟล์ AndroidManifest.xml ในโฟลเดอร์ android/app/src/main/AndroidManifest.xml
+    ```xml
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fluttergooglemap">
+    // ส่วนที่เพิ่มเติม เพื่อทำการกำหนด Permission
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <application
+        android:name="io.flutter.app.FlutterApplication"
+        android:label="fluttergooglemap"
+        android:icon="@mipmap/ic_launcher">
+        // ส่วนที่เพิ่มเติม นำ API Key ที่ได้มาแทนใน "YOUR API KEY"
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR API KEY"/>
+
+        <activity
+            android:name=".MainActivity"
+            ...
+     ```
+     Set the minSdkVersion in android/app/build.gradle:
+     ```
+     android {
+        defaultConfig {
+            minSdkVersion 20 // เดิมเป็น minSdkVersion flutter.minSdkVersion
+          }
+      }
+      ```
+  - iOS : เข้าไปที่ไฟล์ AppDelegate.swift (ios/Runner/AppDelegate.swift) เพิ่ม API KEY เข้าไป GMSServices.provideAPIKey("YOUR KEY HERE")
+    ```
+    @UIApplicationMain
+    @objc class AppDelegate: FlutterAppDelegate {
+      override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+      ) -> Bool {
+      GMSServices.provideAPIKey("YOUR API KEY")
+        GeneratedPluginRegistrant.register(with: self)
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      }
+    }
+    ```
+    และเข้าไปที่ไฟล์ info.plist เพิ่มคำสั่ง เพื่อขอ permission
+    ```xml
+    <dict>
+     <key>NSLocationWhenInUseUsageDescription</key>
+          <string>This app needs your location to test the location feature of the Google Maps plugin.</string>
+          <key>io.flutter.embedded_views_preview</key>
+          <true/>
+     ...
+    ```
+  - ติดตั้ง google_maps_flutter จาก pub.dev ใน pubspec.yaml
+  - import Library
+    ```dart
+    import 'package:google_maps_flutter/google_maps_flutter.dart';
+    ```
+  - สร้างตัวแปรประเภท GoogleMapController โดยเป็น class ที่เอาไว้สร้าง Future สำหรับควบคุมการทำงาน
+    ```dart
+    class _MyHomePageState extends State<MyHomePage> {
+      Completer<GoogleMapController> _controller = Completer();
+    ```
+  - การใช้งาน GoogleMap จะต้องทำการ initialCameraPosition เสมอ เพื่อกำหนดพิกัดจุดเริ่มต้นสถานที่ให้ GoogleMap ทำการแสดงผล
+    ```dart
+    body: GoogleMap(
+        initialCameraPosition: CameraPosition(
+          target: LatLng(13.757429, 100.502465), //กำหนดพิกัดเริ่มต้นบนแผนที่
+          zoom: 15, //กำหนดระยะการซูม สามารถกำหนดค่าได้ 0-20
+        ),
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+      ),
+    ```
+      
+## 🗺️ Flutter Map
+   - Mapping package for Flutter, based off of 'leaflet.js'. Simple and easy to learn, yet completely customizable and configurable, it's the best choice for mapping in your Flutter app.
+   - Demonstration
+     This code snippet demonstrates everything you need for a simple map - of course, FlutterMap is much more customisable than just this!
+     ```dart
+     return FlutterMap(
+         options: MapOptions(
+            center: LatLng(51.509364, -0.128928),
+            zoom: 9.2,
+         ),
+         nonRotatedChildren: [
+            TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            ),
+        ],
+     );
+     ```
+   - Map Layer
+     ```
+     Sphere Basemap > 'https://basemap.sphere.gistda.or.th/tiles/sphere_streets/EPSG3857/{z}/{x}/{y}.png?key=test2022'
+     Sphere Satellite > 'https://basemap.sphere.gistda.or.th/tiles/thailand_images/EPSG3857/{z}/{x}/{y}.jpeg?key=test2022'
+     Google Basemap > 'https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}'
+     Google Satellite > 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
+     ```
+   - Marker Layer
+     ```dart
+     FlutterMap(
+         options: MapOptions(),
+         children: [
+            MarkerLayer(
+                markers: [
+                   Marker(
+                     point: LatLng(30, 40),
+                     width: 80,
+                     height: 80,
+                     builder: (context) => FlutterLogo(),
+                   ),
+                ],
+            ),
+         ],
+     ),
+     ```
+   - Get data from API
+   - More data [Flutter Map Document](https://docs.fleaflet.dev/)
+      
+## 🗺️ Sphere Map
+การเริ่มต้น sphere map flutter
+- Get package sphere_maps_flutter(lastest version) from pub.dev and install
+การเพิ่ม Sphere map widget
+- Define parameter
+  ```
+  final map = GlobalKey<SphereMapState>();
+  final GlobalKey<ScaffoldMessengerState> messenger = GlobalKey<ScaffoldMessengerState>();
+  ```
+- import Spheremap to body
+  ```
+  SphereMapWidget(
+    apiKey: "", // use sphere key
+    bundleId: "",
+    key: map,
+  ),
+  ```
+</details>
+
+<details><summary>Webview</summary>
+<hr>
+
+ - WebView widget เป็น package ที่เราจะต้องติดตั้งเพิ่ม เพื่อใช้งานใน flutter ใช้สำหรับแสดงหน้าเว็บเพจใน flutter
+ - เตรียมข้อมูลสำหรับใช้งาน WebView
+    - ติดตั้ง WebView package
+    - กำหนด API level ของ android ต่ำสุดที่รองรับ จะต้องกำหนดเป็น 19 หรือ 20 ขึ้นไป โดยให้ไปแก้ไขที่ไฟล์ build.gradle กำหนด minSdkVersion เป็น 19 ตามรูป ถ้าเราไม่กำหนด จะไม่สามารถ build ผ่านได้
+      <p align="center">
+        <img src="https://i.imgur.com/qNrcSfY.jpg"> 
+      </p>
+ - การกำหนดและใช้งาน WebView
+    - Ref:  https://www.ninenik.com/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99_WebView_%E0%B9%81%E0%B8%AA%E0%B8%94%E0%B8%87%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C_%E0%B9%83%E0%B8%99_Flutter-1043.html
+
+</details>
+
+<details><summary>Datetime</summary>
+<hr>
+
+1. ประกาศ ตัวแปรชนิด String เพื่อรับ DateFormat
+    ```dart
+    String _dateTime = DateFormat("dd MMMM yyyy").format(DateTime.now());
+    ```
+2. การใช้ dateformat ต้องติดตั้ง Package intl
+    ```dart
+    import 'package:intl/intl.dart';
+    ```
+3. นำ _datetime ไปใส่ใน Text widget
+4. Change date with datepicker with icon ``Icons.arrow_drop_down``
+    ```dart
+    IconButton(
+        onPressed: () async {
+            DateTime? pickedData = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2050),
+            );
+            if (pickedData != null) {
+                setState(() {
+                    _dateTime = DateFormat("dd MMMM yyyy").format(pickedData);
+                });
+            }
+        },
+        icon: const Icon(Icons.arrow_drop_down),
+    ),
+    ```
+</details>
+
+<details><summary>Change Application Icon</summary>
+<hr>
+
+1. Call Package ``flutter_launcher_icons`` and install package
+2. Create a folder called asset in the root directory. Inside the asset folder create one more folder called icons and place your launcher icon inside. ``Hint: It’s recommended to use a higher resolution image, for example, the image of 1024*1024.``
+3. Add flutter_icons inside the pubspec.yaml to reference the new launcher icon. ``Note: foreground icon is smaller than image size with color background``
+    ```yaml
+    flutter_icons:
+    android: true
+    ios: true
+    image_path: "assets/icons/bar-chart.png"
+    adaptive_icon_background: "#ed1e79"
+    adaptive_icon_foreground: "assets/icons/bar-chart_fore.png"
+    ```
+4. In terminal, use ``flutter pub run flutter_launcher_icons:main`` for run the app and verify the new launcher icon updated in the launcher app for both Android and iOS. 
+
+</details>    
+
+<details><summary>Chart</summary>
+<hr>
+
+1. Get package ``syncfusion_flutter_charts`` and install
+2. Add SfCartesianChart or other type to code
+    ```dart
+    SfCartesianChart(
+      title: ChartTitle(text: 'Half yearly sales analysis'),
+      legend: Legend(isVisible: true),
+      primaryXAxis: CategoryAxis(),
+      series: <ChartSeries>[
+        // Initialize line series
+        LineSeries<ChartData, String>(
+          enableTooltip: true,
+          dataSource: [
+            // Bind data source
+            ChartData('Jan', 35),
+            ChartData('Feb', 28),
+            ChartData('Mar', 34),
+            ChartData('Apr', 32),
+            ChartData('May', 40)
+          ],
+          xValueMapper: (ChartData data, _) => data.x,
+          yValueMapper: (ChartData data, _) => data.y,
+          dataLabelSettings: const DataLabelSettings(isVisible: true),
+        ),
+      ],
+    ),
+    ```
+3. Create class ChartData for model of data
+    ```dart
+    class ChartData {
+      ChartData(this.x, this.y);
+      final String x;
+      final double? y;
+    }
+    ```
+4. Add tooltip for show information of point with parameter 
+    ```dart
+    late TooltipBehavior _tooltipBehavior;
+    ```
+5. Get TooltipBehavior at initial state
+    ```dart
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    ```
+6. In chart widget, add _tooltipBehavior for tooltipBehavior
+    ```dart
+    tooltipBehavior: _tooltipBehavior,
+    ```
+</details>
+
+<details><summary>Flutter Firebase</summary>
+<hr>
+
+1. Firebase คือ ฐานข้อมูลประเภท NoSQL ซึ่งไม่ใช้ภาษา SQL ในการจัดการข้อมูล ถูกออกแบบให้มีความยืดหยุ่นต่อการใช้งานและเน้นความรวดเร็วในการใช้งาน มีการเก็บข้อมูลในรูปแบบของ JSON ทำให้สามารถเพิ่มข้อมูลไปใน Object ใดๆ ก็ได้ แต่จะไม่สามารถเก็บเป็น Array ได้ ถ้าต้องการเพิ่มข้อมูลแบบอาร์เรย์จะต้องใช้การ Put ข้อมูลเข้าไปต่อท้ายเรื่อยๆ และจะมีการสร้าง Key ไว้ใช้สำหรับการอ้างอิง 
+2. โครงสร้างการเก็บข้อมูลบน Cloud Firebase จะมีการเก็บแบบ Document Database ทั้งหมด 3 ส่วน คือ
+    - Collection : เป็นเหมือน Folder ที่ไว้เก็บเอกสาร และมีชื่อบอกว่าเก็บเอกสารเกี่ยวกับอะไร
+    - Document : เป็นเหมือนกระดาษไว้สำหรับเก็บข้อมูล โดยเก็บข้อมูลเป็น Object มีชื่อบอกว่าเก็บข้อมูลเกี่ยวกับอะไร และยังสามารถเก็บ Folder (Collection) ได้อีกด้วย 
+    - Data : เป็นที่เก็บข้อมูล
+3. รูปแบบของข้อมูลบน Firestore
+    - String
+    - Number
+    - Boolean
+    - Map
+    - Array
+    - Null
+    - Timestamp
+    - Geopoint
+4. ขั้นตอนการสร้างโปรเจค Firebase
+    1. สร้าง Account ที่ https://firebase.google.com/
+    2. สร้างโปรเจคใหม่ คลิก Add Project ตั้งชื่อ Project แล้วคลิก Continue
+    3. ปิด Google Analytics for this project แล้วคลิก Create project
+    4. ทำการ Register App ตามระบบปฏิบัติการที่ใช้ โดยสามารถเลือกใช้ Flutter ได้ด้วย จากนั้นทำการติดตั้งตามคำแนะนำ ซึ่งจะช่วยให้การติดตั้งสะดวกมากขึ้น
+    5. ในขั้นตอนการติดตั้ง Firebase for Flutter จะต้องทำการสร้าง Flutter Project ก่อนเพื่อให้การ Register สามารถทำกับ Project ที่ต้องการได้ทันที
+    6. ใน Android ต้องทำการ config values accessible to Firebase SDKs ใน Root-level (project-level) Gradle file (<project>/build.gradle):
+    	```
+		buildscript {
+		  repositories {
+		    // Make sure that you have the following two repositories
+		    google()  // Google's Maven repository
+		    mavenCentral()  // Maven Central repository
+		  }
+		  dependencies {
+		    ...
+		    // Add the dependency for the Google services Gradle plugin
+		    classpath 'com.google.gms:google-services:4.3.15'
+		  }
+		}
+		allprojects {
+		  ...
+		  repositories {
+		    // Make sure that you have the following two repositories
+		    google()  // Google's Maven repository
+		    mavenCentral()  // Maven Central repository
+		  }
+		}
+		```
+	
+	และ add both the google-services plugin and any Firebase SDKs that you want to use ใน Module (app-level) Gradle file (<project>/<app-module>/build.gradle):
+	
+		plugins {
+		  id 'com.android.application'
+		  // Add the Google services Gradle plugin
+		  id 'com.google.gms.google-services'
+		  ...
+		}
+		dependencies {
+		  // Import the Firebase BoM
+		  implementation platform('com.google.firebase:firebase-bom:31.2.3')
+		  // TODO: Add the dependencies for Firebase products you want to use
+		  // When using the BoM, don't specify versions in Firebase dependencies
+		  // https://firebase.google.com/docs/android/setup#available-libraries
+		}
+5. การเชื่อมโยง Firebase Authentication เข้ามาใน Flutter Project
+    1. ทำการ Login >> ``firebase login``
+    2. ติดตั้ง FlutterFire CLI >> ``dart pub global activate flutterfire_cli`` และ export path
+    3. ทำการเลือก Project ใน Firebase ที่ต้องการติดตั้ง >> ``flutterfire configure`` พร้อมทำการ Config ตามต้องการ ตรวจสอบไฟล์ ``firebase_options.dart``
+    4. ติดตั้ง Package ``flutter pub add firebase_core`` และ ``flutter pub add firebase_auth``
+    5. ใน Main.dart : Add initial widget binding
+		```dart
+		WidgetsFlutterBinding.ensureInitialized();
+		await Firebase.initializeApp(
+		  options: DefaultFirebaseOptions.currentPlatform,
+		);
+		```
+    6. ใน auth_page.dart : ทำการ Stream ข้อมูลเพื่อตรวจสอบ โดยย้าย Login page เข้ามาใน Class หากข้อมูลที่กรอกเข้ามามีอยู่ใน firebase ให้ไปต่อ ในตัวอย่างให้ไป Homepage()
+		```dart
+		body: StreamBuilder<User?>(
+		  stream: FirebaseAuth.instance.authStateChanges(),
+		  builder: (context, snapshot) {
+		    // User loged in
+		    if (snapshot.hasData) {
+		      return Homepage();
+		    }
+		    // User not log in
+		    else {
+		      return LoginPage();
+		    }
+		  },
+		),
+		```
+    7. เปลี่ยนเส้นทางใน main.dart ไปที่ของ Loginpage() > AuthPage() แทน
+    8. สร้าง User Account ใน Firebase project โดยเลือกวิธีที่ต้องการ ง่ายที่สุดให้เลือก Email/Password ทำการ Enable > Add User > กรอก email & password ที่ต้องการ
+    9. ใน login_page.dart : เพิ่มฟังก์ชัน signUserIn เพื่อใช้สำหรับการส่งค่าที่กรอกจาก TextFormField เข้าไปตรวจสอบ
+		```dart
+		void signUserIn(String email, String password) async {
+		   await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+		}
+		```
+    10. ใน home_page.dart : ทำการสร้างปุ่มสำหรับการ Logout พร้อมฟังก์ชัน signOut
+		```dart
+		void signOut() {
+		  FirebaseAuth.instance.signOut();
+		}
+		```
+    11. ใน home_page.dart : สามารถทำการเรียกใช้งานผู้ใช้งานที login ในปัจจุบันได้ด้วย ``final user = FirebaseAuth.instance.currentUser!;``
+    12. ใน login_page.dart : สามารถทำการแสดงผล loading widget ในระหว่างการโหลดข้อมูลได้ โดยใส่ไว้ใน signUserIn นอกจากนี้ทำการเช็คเงื่อนไขหากมีการกรอกรหัสผิด หรือไม่มีอยู่ในฐานข้อมูล
+		```dart
+		void signUserIn(String email, String password) async {
+		  // show loading widget
+		  showDialog(
+		    context: context,
+		    builder: (context) => const Center(
+		      child: CircularProgressIndicator(),
+		    ),
+		  );
+		  // try sign in
+		  try {
+		    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+		    Navigator.pop(context);
+		  } on FirebaseAuthException catch (e) {
+		    Navigator.pop(context);
+		    // Wrong email
+		    if (e.code == 'user-not-found') {
+		      // print('No user found for that email');
+		      showDialog(context: context, builder: (context) => AlertDialog(title: Text('Incorrect email')));
+		    }
+		    // Wrong password
+		    else if (e.code == 'wrong-password') {
+		      // print('Wrong password');
+		      showDialog(context: context, builder: (context) => AlertDialog(title: Text('Incorrect password')));
+		    }
+		  }
+		  // pop the loading..
+		  // Navigator.pop(context);
+		}
+		```
+6. การเขื่อมโยง Firebase เข้ามาใน Flutter Project
+    1. เลือก Firebase Project ที่ต้องการ
+    2. สร้าง Firestore Database ที่ Cloud Firestore ในแบบ test mode
+    3. ในหน้า Cloud Firestore คลิก Create database > Start in test mode > Set Cloud Firestore location “asia-east2” > enable
+    4. ทำการเพิ่ม App เข้าไปใน Firebase Project
+    5. ขั้นตอนที่ 1 ของการเพิ่ม Firebase ใน Flutter App ทำตามขั้นตอนการติดตั้ง Firebase CLI ด้วย Command => curl -sL https://firebase.tools | bash
+    6. ทดสอบการ Login ด้วย Command => firebase login
+    7. แสดงรายการของ Firebase Project ด้วย Command => firebase projects:list
+    8. ทำการ Initial Firebase ใน Project ด้วย Command => firebase init ซึ่งจะได้ไฟล์ firebase.json และ .firebaserc
+    9. ขั้นตอนที่ 2 ของการเพิ่ม Firebase ใน Flutter App ใน Terminal ทำการรัน Command => dart pub global activate flutterfire_cli
+    10. จากนั้นทำการ Config ตาม Project ด้วย Command => flutterfire configure --project=“Project Name” หลังจากทำการติดตั้งเสร็จสิ้นจะได้ไฟล์ firebase_option.dart ในโฟลเดอร์ lib
+    11. ติดตั้ง Package Firebase_core ใน pubspec.yaml จากนั้นแก้ไขตามแต่ละ OS
+        1. ใน iOS Folder สั่ง => pod install
+        2. ใน Android ทำการแก้ไข minSDKVersion => 21 (android > app > build.gradle) และเพิ่ม multiDexEnabled true
+    12. แก้ไข main() ให้เป็น
+    ```dart
+		Future<void> main(List<String> args) async {
+  			WidgetsFlutterBinding.ensureInitialized();
+  			await Firebase.initializeApp();
+  			runApp(MyApp());
+		}
+    ```
+    13. ทำการ Initial Firebase ด้วยคำสั่ง => Future<FirebaseApp> firebase = Firebase.initializeApp();
+    14. ตรวจสอบการ Connection ใน FutureBuilder ด้วย snapshot ถ้ามี Error ให้ทำการแสดง Error 
+    15. ตรวจสอบความสมบูรณ์ของการเชื่อมต่อด้วย snapshot.connectionState == ConnectionState.done
+    16. ติดตั้ง Package cloud_firestore
+    17. สร้าง Collection สำหรับใช้ในการเก็บข้อมูล ด้วยคำสั่ง CollectionReference _nameCollection = FirebaseFirestore.instance.collection(’Collection_Name’)
+    18. ในปุ่มสำหรับการอัพโหลดข้อมูลให้ทำการเช็คการทำงานด้วย async และ await
+</details>
+
+<details><summary>Radio Button</summary>
+<hr>
+
+## 🔘 Radio Button
+  ```dart
+  Radio(
+      value: 1,
+      groupValue: selectedRadio,
+      activeColor: Colors.green,
+      onChanged: (val) {
+        print("Radio $val");
+        setSelectedRadio(val);
+      },
+    ),
+  ```
+  - The ‘value‘ property is the value of each radio button.
+  - The ‘groupValue‘ property is the value that decides whether the radio button in the group should be selected or not.
+    - The button changes to selected when the ‘value‘ and ‘groupValue‘ becomes equal.
+      ```dart
+      setSelectedRadio(int val) {
+        setState(() {
+          selectedRadio = val;
+        });
+      }
+      ```
+  - The ‘activeColor‘ property decides the active color of the radio button.
+  - The ‘onChanged‘ returns the current radio button’s value.
+## 🔘 RadioListTile
+ RadioListTile gives us more control over the normal one. It has additional ‘title‘ and ‘subtitle‘ property and a ‘secondary‘ widget. Here I am setting the ‘secondary‘ widget to an ElevatedButton for now.
+  ```dart
+  RadioListTile(
+    value: 1,
+    groupValue: selectedRadioTile,
+    title: Text("Radio 1"),
+    subtitle: Text("Radio 1 Subtitle"),
+    onChanged: (val) {
+      print("Radio Tile pressed $val");
+      setSelectedRadioTile(val);
+    },
+    activeColor: Colors.red,
+    secondary: ElevatedButton(
+      child: Text("Say Hi"),
+      onPressed: () {
+        print("Say Hello");
+      },
+    ),
+    selected: true,
+  ),
+  ```
+## 🔘 Radio Group Using Objects
+  - Create a new file named ‘user.dart’ and copy these contents.
+    ```dart
+    class User {
+      int userId;
+      String firstName;
+      String lastName;
+
+      User({this.userId, this.firstName, this.lastName});
+
+      static List<User> getUsers() {
+        return <User>[
+          User(userId: 1, firstName: "Aaron", lastName: "Jackson"),
+          User(userId: 2, firstName: "Ben", lastName: "John"),
+          User(userId: 3, firstName: "Carrie", lastName: "Brown"),
+          User(userId: 4, firstName: "Deep", lastName: "Sen"),
+          User(userId: 5, firstName: "Emily", lastName: "Jane"),
+        ];
+      }
+    }
+    ```
+  - Once that is done. Create a List<user> inside you class and initialize in the initState method.
+    ```dart
+    List<user> users;
+ 
+    @override
+    void initState() {
+      super.initState();
+      users = User.getUsers();
+    }
+
+    setSelectedUser(User user) {
+      setState(() {
+        selectedUser = user;
+      });
+    }
+
+    List<widget> createRadioListUsers() {
+      List<widget> widgets = [];
+      for (User user in users) {
+        widgets.add(
+          RadioListTile(
+            value: user,
+            groupValue: selectedUser,
+            title: Text(user.firstName),
+            subtitle: Text(user.lastName),
+            onChanged: (currentUser) {
+              print("Current User ${currentUser.firstName}");
+              setSelectedUser(currentUser);
+            },
+            selected: selectedUser == user,
+            activeColor: Colors.green,
+          ),
+        );
+      }
+      return widgets;
+    }
+
+    // In the build method
+    Column(
+      children: createRadioListUsers(),
+    ),
+    ```
+    When the user taps each radio button in the list, it will trigger onChanged callback with the currentUser and it will set the global selectedUser object, which will match the corresponding groupValue in the list of widgets and when ‘selectedUser == user‘, that means when each radio button’s user value becomes equal to groupValue, it will become selected. The ‘selected‘ property changes the label color to the ‘activeColor‘, here it is Colors.green.
+  - Complete code
+    ```dart
+    import 'package:flutter/material.dart';
+    import 'user.dart';
+
+    class RadioWidgetDemo extends StatefulWidget {
+      RadioWidgetDemo() : super();
+      final String title = "Radio Widget Demo";
+      @override
+      RadioWidgetDemoState createState() => RadioWidgetDemoState();
+    }
+
+    class RadioWidgetDemoState extends State<RadioWidgetDemo> {
+      //
+      late List<User> users;
+      User selectedUser = User();
+      late int selectedRadio;
+      late int selectedRadioTile;
+      @override
+      void initState() {
+        super.initState();
+        selectedRadio = 0;
+        selectedRadioTile = 0;
+        users = User.getUsers();
+      }
+
+      setSelectedRadio(int val) {
+        setState(() {
+          selectedRadio = val;
+        });
+      }
+
+      setSelectedRadioTile(int val) {
+        setState(() {
+          selectedRadioTile = val;
+        });
+      }
+
+      setSelectedUser(User user) {
+        setState(() {
+          selectedUser = user;
+        });
+      }
+
+      List<Widget> createRadioListUsers() {
+        List<Widget> widgets = [];
+        for (User user in users) {
+          widgets.add(
+            RadioListTile(
+              value: user,
+              groupValue: selectedUser,
+              title: Text(user.firstName!),
+              subtitle: Text(user.lastName!),
+              onChanged: (currentUser) {
+                print("Current User ${currentUser!.firstName}");
+                setSelectedUser(currentUser);
+              },
+              selected: selectedUser == user,
+              activeColor: Colors.green,
+            ),
+          );
+        }
+        return widgets;
+      }
+
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: Text("USERS"),
+              ),
+              // Radio Group Using Objects
+              Column(
+                children: createRadioListUsers(),
+              ),
+              const Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+              // RadioListTile
+              RadioListTile(
+                value: 1,
+                groupValue: selectedRadioTile,
+                title: Text("Radio 1"),
+                subtitle: Text("Radio 1 Subtitle"),
+                onChanged: (val) {
+                  print("Radio Tile pressed $val");
+                  setSelectedRadioTile(val!);
+                },
+                activeColor: Colors.red,
+                secondary: ElevatedButton(
+                  child: Text("Say Hi"),
+                  onPressed: () {
+                    print("Say Hello");
+                  },
+                ),
+                selected: true,
+              ),
+              RadioListTile(
+                value: 2,
+                groupValue: selectedRadioTile,
+                title: Text("Radio 2"),
+                subtitle: Text("Radio 2 Subtitle"),
+                onChanged: (val) {
+                  print("Radio Tile pressed $val");
+                  setSelectedRadioTile(val!);
+                },
+                activeColor: Colors.red,
+                secondary: ElevatedButton(
+                  child: Text("Say Hi"),
+                  onPressed: () {
+                    print("Say Hello");
+                  },
+                ),
+                selected: false,
+              ),
+              const Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+              // Radio
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Radio(
+                    value: 1,
+                    groupValue: selectedRadio,
+                    activeColor: Colors.green,
+                    onChanged: (val) {
+                      print("Radio $val");
+                      setSelectedRadio(val!);
+                    },
+                  ),
+                  Radio(
+                    value: 2,
+                    groupValue: selectedRadio,
+                    activeColor: Colors.blue,
+                    onChanged: (val) {
+                      print("Radio $val");
+                      setSelectedRadio(val!);
+                    },
+                  ),
+                ],
+              )
+            ],
+          ),
+        );
+      }
+    }
+    ```
+ - Credit : https://vipinvijayannair.medium.com/radiobuttons-radiolisttile-in-flutter-dee3013a70b1 
+</details>
+ 
+<details><summary>Pull to update</summary>
+<hr>
+  
+1) สร้าง Function สำหรับ Fetchdata โดยเป็นการ SetState ให้กับตัวแปรหรือข้อมูลที่ใช้ในส่วนการอัพเดท
+2) ใช้ RefreshIndicator ครอบส่วนที่ต้องการอัพเดท แล้วใช้ event ``onRefresh`` เรียกฟังก์ชัน fetchData()
+```dart
+ Future refresh() async {
+    setState(() {
+      items = ['Item{$now}', 'item5', 'item6'];
+      now = DateTime.now();
+
+      // initState();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('pull to refresh'),
+      ),
+      body: RefreshIndicator(
+        onRefresh: refresh,
+        child: Container(
+          child: Column(
+            children: [
+              Text('$now'),
+              Container(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(items[index]),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+```
+</details>
+
+<details><summary>Multiple Language Application</summary>
+<hr>
+  
+1) สร้างโปรเจค
+2) เพิ่ม Dependencies ทำการติดตั้ง easy_localization ใน pubspec.yaml
+3) เพิ่มโฟลเดอร์ assets หรือไฟล์คำแปล และ configure ใน pubspec.yaml
+4) เพิ่มไฟล์ภาษาต่างๆ ในรูปแบบ assets/lang/{langCode}-{countryCode}.json เช่น 
+    ไฟล์ภาษาอังกฤษ assets/lang/en.json
+    ```json
+    {
+      "app": {
+        "title": "Multi locale clicker",
+        "changeLang": "เปลี่ยนภาษา",
+        "description": "You have pushed the button this many times",
+        "increment": "Increment",
+        "counter": {
+          "zero": "{} times",
+          "one": "{} time",
+          "two": "{} times",
+          "other": "{} times"
+        }
+      }
+    }
+    ```
+    
+    ไฟล์ภาษาไทย assets/lang/th.json
+    ```json
+    {
+      "app": {
+        "title": "Multi locale clicker",
+        "changeLang": "Change language",
+        "description": "คลิกสิคลิกหลายๆที",
+        "increment": "เพิ่ม",
+        "counter": {
+          "zero": "{} ครั้ง",
+          "one": "{} ครั้ง",
+          "two": "{} ครั้ง",
+          "other": "{} ครั้ง"
+        }
+      }
+    }
+    ```
+    ```
+    Note: app.changeLang จะใช้กับปุ่มเปลี่ยนภาษา, counter ตั้งใจทำไว้เพื่อรองรับ Plural ในภาษาอังกฤษ
+    ```
+5) ตั้งค่า easy_localization ลงในแอป
+    ใน main.dart เพิ่ม Widget EasyLocalization มาก่อน Widget MyApp โดยเจ้า EasyLocalization จะเป็นตัวหลักในการตั้งค่า Locale ต่างๆ
+    ```dart
+    import 'package:flutter/material.dart';
+    import 'package:easy_localization/easy_localization.dart';
+
+    void main() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await EasyLocalization.ensureInitialized();
+
+      runApp(
+        EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('th')],
+          path: 'assets/lang',
+          fallbackLocale: Locale('th'),
+          child: MyApp(),
+        ),
+      );
+    }
+
+    class MyApp extends StatelessWidget {
+    ...
+    ```
+
+    เพิ่ม Localization ให้กับ MaterialApp 
+    ```dart
+    ...
+    class MyApp extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: MyHomePage(title: 'Flutter Demo Home Page'),
+        );
+      }
+    }
+    ...
+    ```
+    EasyLocalization จะเป็นตัวที่กำหนด context.localizationDelegates context.supportedLocales context.locale ให้ จากนั้น ใช้คำสั่ง tr('...'), '...'.tr() หรือ Text('...').tr() ในการแปลภาษา
+    ```dart
+    ...
+    return MaterialApp(
+      ...
+      home: Builder(
+        builder: (context) {
+          return MyHomePage(
+            title: tr('app.title'),
+          );
+        },
+      ),
+    );
+    ...
+    ```
+    
+    ```
+    Note: ฟังก์ชั่น Localization ถูกสร้างที่ Widget MaterialApp ถ้าอยากจะเรียกใช้การแปลภาษาที่ MaterialApp ต้องซ้อนผ่าน Widget Builder ก่อน
+    ```
+    ต่อด้วย
+    ```dart
+    ...
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title!),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('app.description').tr(),
+            Text(
+              'app.counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ).plural(_counter),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: tr('Increment'),
+        child: const Icon(Icons.add),
+      ),
+    );
+    ...
+    ```
+6) เขียนส่วนตั้งค่าเปลี่ยนภาษา
+    ```dart
+    ...
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: TextButton(
+              child: Text(
+                tr('app.changeLang'),
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => setState(() {
+                if (context.locale.languageCode == 'en') {
+                  context.setLocale(Locale('th'));
+                } else {
+                  context.setLocale(Locale('en'));
+                }
+              }),
+            ),
+          )
+        ],
+      ),
+    ...
+    ```
+    
+    ```
+    Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
+    ```
+Bonus
+   เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
+   ```dart
+    ...
+    child: GestureDetector(
+      child: Flag.fromCode(
+        context.locale.languageCode == 'en'
+          ? FlagsCode.TH
+          : FlagsCode.GB, // Union Jack
+        width: 30,
+      ),
+      onTap: () => setState(() {
+        if (context.locale.languageCode == 'en') {
+          context.setLocale(
+            Locale('th'),
+          );
+        } else {
+          context.setLocale(
+            Locale('en'),
+          );
+        }
+      }),
+    ),
+    ...
+   ```
+</details>
+
+  
+<details><summary>Call Another Application</summary>
+<hr>
+  
+- Open another app from your app with package: external_app_launcher
+```dart
+import 'package:flutter/material.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Color containerColor = Colors.red;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: Center(
+          child: Container(
+            height: 50,
+            width: 150,
+            child: RaisedButton(
+              color: Colors.blue,
+              onPressed: () async {
+                await LaunchApp.openApp(
+                  androidPackageName: 'net.pulsesecure.pulsesecure',
+                  iosUrlScheme: 'pulsesecure://',
+                  appStoreLink: 'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
+                  // openStore: false
+                );
+
+                // Enter the package name of the App you want to open and for iOS add the URLscheme to the Info.plist file.
+                // The `openStore` argument decides whether the app redirects to PlayStore or AppStore.
+                // For testing purpose you can enter com.instagram.android
+              },
+              child: Container(
+                child: Center(
+                  child: Text("Open",
+                    textAlign: TextAlign.center,
+                  ),
+                ))),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+</details>
