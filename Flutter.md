@@ -670,3 +670,210 @@
       - การใช้งาน ListView.separated()
       - การใช้งาน ListView.custom()
 </details>
+ 
+<details><summary>Database</summary>
+<hr>
+
+- Local Database : การเก็บข้อมูลในพื้นที่เก็บข้อมูลในเครื่องนั้น ๆ สามารถเรียกใช้งานเมื่อต้องการ แต่ถ้าทำการลบหรือล้างแอพในเครื่องข้อมูลก็จะสูญหายไปด้วย
+- รูปแบบการเก็บข้อมูล
+  - SQL : Table, Row, Column, Primary Key
+  - NoSQL : Collections, Document, Field, ObjectID
+- ติดตั้ง Package สำหรับใช้งานฐานข้อมูล ดังนี้
+  - Sembast : จัดการฐานข้อมูล
+  - Path_Provider : ดึงตำแหน่งฐานข้อมูลของเครื่อง
+  - Path : อ้างอิงตำแหน่งที่เก็บฐานข้อมูล
+- การสร้าง Store คือ การระบุที่จัดเก็บข้อมูลในแอพว่าชื่ออะไร มีรูปแบบการจัดเก็บข้อมูลแบบใด (คล้ายๆกับการสร้างตารางในฐานข้อมูล) โดยใช้ intMapStoreFactory
+- การทำงานของ Snapshot เป็นส่วนของการแก้ปัญหาการเก็บข้อมูลที่มีสภาพแวดล้อมที่แตกต่างกัน เช่น การเก็บข้อมูลใน Android หรือ iOS สภาพแวดล้อมของแต่ละ Platform แตกต่างกันโดยสิ้นเชิง ส่งผลให้การจัดการข้อมูลมีความยุ่งยากไปด้วย จึงมีแนวคิดในการสร้างประเภทข้อมูลที่สามารถทำให้ข้อมูลทำงานได้ในสภาพแวดล้อมต่างกันที่เรียกว่า RecordSnapshot
+</details>
+
+      
+<details><summary>Form and Validate</summary>
+<hr>
+
+## ⏭️ Form
+- การสร้างแบบฟอร์ม คือ การรับข้อมูล (Input) จากผู้ใช้ เช่น ข้อความ ตัวเลข วันเวลา หรือตัวเลือกต่าง ๆ ซึ่งมีโครงสร้าง 2 ส่วน คือ แบบฟอร์มและส่วนควบคุมการทำงานของแบบฟอร์ม (Controller)
+- การจัดรูปแบบฟอร์ม
+  - autofocus : สั่งโฟกัสที่ช่องรับข้อมูลในตอนเริ่มต้น
+  - keyboardtype : กำหนดรูปแบบของช่องรับข้อมูล
+- สร้างฟอร์ม key หรือ id ของฟอร์มสำหรับอ้างอิง
+  ```
+  final _formKey = GlobalKey<FormState>();
+  ```
+- สร้าง Form ด้วย widget
+  ```dart
+  Form(
+    key: _formKey,
+    child: Column(
+      children: <Widget>[
+      // กำหนด widget ที่จะใช้งานกับฟอร์ม, Add TextFormFields and ElevatedButton here.
+      ],
+    ),
+  );
+  ```
+- การอ้างอิงฟอร์มที่กำลังใช้งาน ตรวจสอบความถูกต้องข้อมูลในฟอร์ม
+  ```dart
+  if (_formKey.currentState!.validate()) { //หากผ่าน 
+    // แสดงข้อความ
+  } else {}
+  ```
+- หลักการทำงานเบื้องต้น ถ้ายังไม่ได้กรอกข้อมูล เมื่อกดปุ่ม submit ฟอร์มก็จะตรวจสอบข้อมูลโดยทำการ validate และแจ้งให้กรอกข้อมูลก่อนส่ง หลังกรอกข้อมูล และกดส่งใหม่อีกครั้ง
+- การใช้งาน TextFormField ซึ่งเป็น widget หลักที่มีการใช้งานร่วมกับฟอร์ม 
+  ```dart
+  TextFormField(
+    cursorColor: Theme.of(context).cursorColor,
+    initialValue: 'Input text', // ค่าเริ่มต้น
+    maxLength: 20, // จำกัดความยาวตัวอักษร
+    decoration: InputDecoration( // ตกแต่งการแสดงผล
+      icon: Icon(Icons.favorite),
+      labelText: 'Label text',
+      labelStyle: TextStyle(
+        color: Color(0xFF6200EE),
+      ),
+      helperText: 'Helper text',
+      suffixIcon: Icon(
+        Icons.check_circle,
+      ),
+      enabledBorder: UnderlineInputBorder( // การใส่กรอบให้พื้นที่แสดงผล
+        borderSide: BorderSide(color: Color(0xFF6200EE)),
+      ),
+    ),
+  ),
+  ```
+- ปัญหาพื้นที่กับการใช้งาน Form ใน Flutter จะมีในเรื่องของการใช้งานแป้นพิมพ์ เข้ามาเกี่ยวข้องเมื่อมีการกรอกข้อมูล และถ้าส่วนของข้อมูลในฟอร์มมีการเปลี่ยนแปลงในเรื่องของขนาดหรือพื้นที่การแสดงข้อมูล ซึ่งอาจจะมาจากการซ่อนหรือแสดงข้อความ error หรืออื่นๆ ดังนั้นต้องกำหนดการใช้งาน SingleChildScrollView widget ครอบส่วนของ ฟอร์มอีกที เพื่อให้รองรับการปรับขนาดของพื้นที่ให้สามารถเลื่อนได้ ก็จะไม่เกิดปัญหาในเรื่องของพื้นที่แสดงข้อมูล ดังนี้
+  ```dart
+  body: SingleChildScrollView(
+    child: Form(  // ใช้งาน Form
+      key: _formKey, // กำหนด key
+  ....
+  ```
+- การรับค่าจากข้อมูลจาก TextFormField จะมีที่จะกำหนดหลักๆ อยู่ 3 - 4  จุด คือ
+  1. กำหนดตัวแปรสำหรับ controller หรือเรียกว่าตัวควบคุม
+  2. นำ controller ผูกกับฟอร์มฟิลด์ที่ต้องการ
+      ```dart
+      / กำหนดตัวแปรรับค่า
+      final _text1 = TextEditingController();
+      
+      ....
+      TextFormField(
+        controller: _text1, // ผูกกับ TextFormField ที่จะใช้
+        validator: Validators.required('Please enter some text'),
+      ),
+      ```
+  3. อ้างอิงค่า และใช้งานผ่าน controller
+  4. ยกเลิกการใช้งาน
+      ```dart
+      @override
+      void dispose() {
+        _text1.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
+        super.dispose();
+      }
+      ```
+
+## ⏭️ Validate
+- การ validate หรือการตรวจสอบความถูกต้องของข้อมูลใน TextFormField จะกำหนด callback ฟังก์ชั่นให้กับ validator property เงื่อนไขการตรวจสอบก็ขึ้นกับรูปแบบตามที่ต้องการ
+- callback ฟังก์ชัน จะทำงานเมื่อฟอร์มมีการตรวจสอบความถูกต้อง หรือก็คือเมื่อใช้คำสั่ง validate() อย่างในตัวอย่าง
+  ```dart
+  if (_formKey.currentState!.validate()) { // ตรวจสอบความถูกต้องของข้อมูลในฟอร์ม
+  ```
+- กรณีต้องการให้เรียกใช้งานทันทีที่มีการกรอกข้อมูล การกำหนดลักษณะนี้ จะทำให้การกรอกและส่งข้อมูลเป็นไปอย่างรวดเร็ว เพราะหากเงื่อนไขผ่านในขณะกรอกข้อมูล ก็ไม่ต้องย้อนกลับมาแก้ไข เหมือนกรณีที่เช็คด้วย validate() จากฟอร์ม นั่นคือไม่ต้องรอกดปุ่ม submit ก็รู้ได้เลยว่าข้อมูลที่กรอกอยู่นั้นผ่านหรือยังไม่ผ่านการตรวจสอบ สามารถกำหนด
+  ```dart
+  autovalidateMode: AutovalidateMode.always,
+  ```
+- การกำหนด Form Validation ด้วย ``mixin`` สร้าง class ที่จัดการเกี่ยวกับการตรวจสอบความถูกต้องของข้อมูลในฟอร์ม โดยใช้ชื่อว่า validations.dart ดังนี้
+  ```dart
+  // เนื่องจากข้อมูลข้อความ error ที่ validator ต้องการเป็น FormFieldValidator<String> จึงต้องกำหนดการใช้งาน FormFieldValidator โดยใช้จาก widgets ดึงมาเฉพาะที่ต้องการโดยใช้คำว่า show FormFieldValidator
+  import 'package:flutter/widgets.dart' show FormFieldValidator;
+
+  // เนื่องจากไม่ได้กำหนด constructor และ property ใดๆ จึงใช้งานเป็น mixin เป็นรูปแบบหนึ่งของ class
+  mixin Validators {
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ที่ต้องกรอก
+    static FormFieldValidator<String> required(String errMsg) {
+      return (value) {
+          if(value == null){
+            return errMsg;
+          }else if(value.isEmpty){
+            return errMsg;
+          }
+      };
+    }
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องกรอกตัวเลขต่ำสุดอย่างน้อย
+    static FormFieldValidator<String> min(int min,String errMsg) {
+      return (value) => (int.parse(value!) >= 0 && int.parse(value) < min) ? errMsg : null;
+    }  
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องกรอกตัวเลขสูงสุดอย่างน้อย
+    static FormFieldValidator<String> max(int max,String errMsg) {
+      return (value) => (int.parse(value!) >= 0 && int.parse(value) > max) ? errMsg : null;
+    } 
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องกรอกตัวอักษรยาวน้อยสุด
+    static FormFieldValidator<String> minLength(int minLength,String errMsg) {
+      return (value) => (value!.isNotEmpty && value.length < minLength) ? errMsg : null;
+    }  
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องกรอกตัวอักษรยาวมากสุดไม่เกิน
+    static FormFieldValidator<String> maxLength(int maxLength,String errMsg) {
+      return (value) => (value!.isNotEmpty && value.length > maxLength) ? errMsg : null;
+    }   
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องกรอกข้อมูลตามรูปแบบ RegEex
+    static FormFieldValidator<String> pattern(RegExp pattern,String errMsg) {
+      return (value) => (value!.isNotEmpty && !pattern.hasMatch(value) ) ? errMsg : null;
+    } 
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องกรอกข้อมูลอีเมลที่ถูกต้องตามรูปแบบ
+    static FormFieldValidator<String> email(String errMsg) {
+      final emailPattern = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+      return (value) => (value!.isNotEmpty && !emailPattern.hasMatch(value) ) ? errMsg : null;
+    }
+
+    // กำหนดฟังก์ชั่น สำหรับระบุฟิลด์ต้องใช้งานการตรวจสอบหลายๆ คำสั่งรวมกัน
+    static FormFieldValidator<String> compose(List<FormFieldValidator<String>> validators) {
+      return (value) {
+        for (final validator in validators) {
+          if (validator(value) != null) return validator(value);
+        }
+        return null;
+      };
+    }
+
+  }
+  ```
+  - ตัวอย่างการใช้งานใน TextFormField การกำหนดแบบหลายเงื่อนไขเพื่อให้ทำงานแบบมีประสิทธิภาพ ควรลำดับการตรวจสอบด้วย เช่น สมมติข้างต้นต้องการให้กรอกปี ค.ศ. ตั้งแต่ 2000 - 3000 อย่างแรกก็ต้องให้กรอกข้อมูล ต่อมาต้องเป็นตัวเลข ต่อมาต้องเป็นตัวเลข 4 ตัวขึ้นไป ต่อมาต้องเป็น ต่ำสุด และสูงสุด ตามลำดับ เพราะสมมติว่า ถ้า minLength หรือจำนวนตัวอักขระที่กรอก 4 ตัวขึ้นก่อนการเช็คว่าเป็นตัวเลข  ก็จะกลายเป็นว่า กรอกเป็นตัวอักษร ก็ผ่านแต่ไม่ผ่านต้องเป็นตัวเลข ดังนั้นก็ให้ไม่ผ่านตั้งแต่กรอกตัวอักษรเลย จะเป็นวิธีที่ถูกต้อง
+    ```dart
+    TextFormField(
+      autovalidateMode: AutovalidateMode.always,
+      // validator: Validators.required('Please enter some text'), // แบบกำหนดเงื่อนไขเดียว
+      validator: Validators.compose([ // แบบกำหนดหลายเงื่อนไข 
+        Validators.required('Please enter some text'),
+        // Validators.email('Please enter a valid email'),
+        Validators.pattern(RegExp(r'^([0-9])+$'), 'Only numberic'),
+        Validators.minLength(4,'Please enter 4 digit'),
+        Validators.min(2000,'Please enter a number between 2000 and 3000 '),
+        Validators.max(3000,'Please enter a number between 2000 and 3000 '), 
+      ])
+    ),
+    ```
+- การกำหนด Form Validation ด้วย form_field_validator package ตัวช่วยในการจัดการตรวจสอบความถูกต้องของข้อมูลฟอร์มเบื้องต้น
+  - ติดตั้ง form_field_validator
+  - ตัวอย่างการเรียกใช้งาน
+    ```dart
+    // แบบเงื่อนไขเดียว
+    TextFormField(
+      autovalidateMode: AutovalidateMode.always,
+      validator: RequiredValidator(errorText: 'this field is required'),
+    ),
+
+    // แบบหลายเงื่อนไข
+    TextFormField(
+      autovalidateMode: AutovalidateMode.always,
+      validator: MultiValidator([  
+        RequiredValidator(errorText: 'Please enter some text'),
+        // EmailValidator(errorText: 'Please enter a valid email'),  
+        MinLengthValidator(4, errorText: 'Please enter 4 digit'),  
+        PatternValidator(r'^([0-9])+$', errorText: 'Only numberic'),
+        RangeValidator(min: 2000, max: 3000, errorText: 'Please enter a number between 2000 and 3000'),
+     ]),
+    ```
+</details>
