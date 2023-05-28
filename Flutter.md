@@ -6,6 +6,73 @@
 ## What is Flutter?
  - **Flutter** เป็น Framework ในการพัฒนา Mobile Application พัฒนาและสนับสนุนโดย Google สามารถพัฒนา app แบบ cross-platform โดยสามารถสร้างและใช้งานได้ใน iOS, Android, พร้อมกับ Desktop และใน Website Flutter ไม่ได้ compiled โดยตรงไปที่ Android หรือ iOS เลย แอพจะเปิดขึ้นได้ด้วยการทำงานร่วมกันของ rendering engine สร้างจาก C++ และ ใช้ Flutter Design UI ที่สร้างจาก Dart
 </details>
+<details><summary>Setup Flutter</summary>
+<hr>
+  
+  ### 1. Install Flutter SDK
+   - Get the Flutter SDK at: https://docs.flutter.dev/get-started/install/macos
+   - If you setup in Mac Silicon, you must to install Rosetta
+  
+      ```shell  
+      sudo softwareupdate --install-rosetta --agree-to-license
+      ```
+   - Extract the file in the desired location, for example:
+
+      ```shell
+      cd ~/Flutter
+      unzip ~/Downloads/flutter_macos_3.3.2-stable.zip
+      ```
+   - Add the flutter tool to your path with 'pwd => path of flutter':
+  
+     ```shell
+     vim .zshrc
+     Press 'I'
+        export PATH=/Users/username/Documents/Flutter/ENV/flutter/bin:$PATH
+     Press ESC
+     Type ':wq!'
+     ```
+     ```shell
+     export PATH="$PATH:/Users/username/Documents/Flutter/ENV/flutter/bin"
+     ```
+   - Run Flutter doctor:
+  
+     ```shell
+     flutter doctor
+     ```
+  ### 2. Install Xcode
+   - Get the Xcode at: https://developer.apple.com/xcode/.
+   - Configure the Xcode command-line tools to use the newly-installed version of Xcode by running the following from the command line:
+  
+     ```shell
+     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+     sudo xcodebuild -runFirstLaunch
+     ```
+   - Make sure the Xcode license agreement is signed by either opening Xcode once and confirming or running with command line:
+     ```shell
+     sudo xcodebuild -license
+     ```
+   - Set up the iOS simulator. On your Mac, find the Simulator via Spotlight or by using the following command:
+  
+     ```shell
+     open -a Simulator
+     ```
+   - Install cocoapods
+  
+     ```shell
+     sudo gem install cocoapods
+     ```
+  ### 3. Install Android Studio
+   - Download and install [Android Studio](https://developer.android.com/studio).
+   - Set up the Android emulator follow command recommendation.
+   - Agree to Android Licenses:
+      
+     ```shell
+     flutter doctor --android-licenses
+      ```
+  ### 4. Install VS Code
+   - Install extension : Flutter, Dart, Highlight Matching Tag, Lorem ipsum, Dart Data Class, GitHub Pull Requests and Issues
+
+</details>
 <details><summary>Dart 101</summary>
 <hr>
   
