@@ -443,5 +443,82 @@
    ```
    สามารถทำการแยก setState() ออกเป็นฟังก์ชันแยกได้ เพื่อให้สะดวกต่อการแก้ไข
  - BottomNavigationBar, which is a horizontal array of buttons typically shown along the bottom of the app using the bottomNavigationBar property.
-  
+
+## ▶️ Navigation Widget
+- Navigator Widget คือ กลุ่มของ widget หรือ class ที่ใช้ร่วมกับ route ในการจัดการ widget ย่อย
+- มีการจัดวางโครงสร้างแบบ stack ซึ่งเป็นการซ้อนทับตามลำดับจากล่างขึ้นบน โดยแผ่่นที่นำมาเรียงต่อกันคือ ส่วนของ Widget ย่อย แผ่นที่แสดงผลจะถูกแสดงซ้อนทับหน้าอื่น ๆ ไว้
+- Operator ของ Stack มีสองตัวคือ
+  - Push : เป็นการนำสมาชิกใหม่มาไว้บนสุดของ stack สามารถทำการรับส่งข้อมูลระหว่างกันได้
+    ```dart
+    Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (
+          BuildContext context) {
+            return Text("Page 2");
+    }));
+    ```
+  - Pop : เป็นการนำสมาชิกชั้นบนสุดออกจาก stack
+
+      App: page1 -> page2 -> page3(pop)
+
+      To
+
+      App: page1 -> page2 
+
+    <p align="center">
+      <img src="https://itome.team/blog/2019/12/flutter-advent-calendar-day10/navigator_stack.png"> 
+    </p>
+  - PushNamed : เป็นการเรียก widget ย่อย เพื่อให้ไปหน้า route ที่ต้องการ ใช้ในกรณีที่มีจำนวนหน้าซับซ้อน เช่น สมมุติว่าผู้อ่านอยู่ page1 และต้องการเปิดหน้าใหม่ก็จะเจอ page2 พอผู้อ่านอยู่ page2 และต้องการเปิดหน้าใหม่ก็จะเจอ page3 จะเป็นยังงี้ไปเรื่อยๆ
+
+      App: page1(pushNamed(page2)) -> page2(pushNamed(page3) -> page3
+ 
+  - pushReplacementNamed : เป็นการแทนที่หน้าที่เราอยู่ ณ ปัจจุบัน สมมุติว่าผู้อ่านอยู่ page1 เมื่อกด pushReplacementNamed จะมี page อื่นมาแทน โดยไม่สามารถ pop กลับไปก่อนหน้าได้
+
+      App: page1(pushNamed(page2) <- page2
+
+      To
+
+      App: page2
+  - popAndPushNamed : เหมือน PushReplacementNamed แต่ข้อแตกต่างคือเรื่องการแสดงผล animation flutter
+    - pushReplacementNamed : Enter animation
+    - popAndPushNamed : Exit animation
+  - pushNamedAndRemoveUntil ใช้ในกรณีที่เราต้องการ push หน้าใหม่ขึ้นมาแล้วทำการลบหน้าที่ซ้อนๆ กันอยู่ด้านล่างของ Stack ทิ้งออกไป เวลากลับจะได้กลับไปหน้าที่ต้องการได้เลย มีลูกเล่นอยู่ 2 แบบคือ 
+    - เคลียร์ทุกค่าที่อยู่ใน stack แล้วทำการเปิด page ที่ต้องการ เช่น page4
+    ```dart
+    Navigator.pushNamedAndRemoveUntil(context, '/page4', (Route<dynamic> route) => false);
+    ```
+
+      APP: page1 -> page2 -> page3(pushNamedAndRemoveUntil(page4) -> page4
+
+      To
+
+      App: page4
+    - เคลียร์ค่าใน stack ตามที่ต้องการ เช่น ต้องการเปิด page4 แล้วเคลียร์ page2,3
+    ```dart
+    Navigator.pushNamedAndRemoveUntil(context, '/page4', ModalRoute.withName('/page1'));
+    ```
+
+      APP: page1 -> page2 -> page3(pushNamedAndRemoveUntil(page4),ModalRoute.withName(page1) -> page4
+
+      To
+
+      App: page1 -> page4
+  - PopUntil : จะเป็นการ pop จนกว่าจะถึง page ที่ต้องการ เช่น pageA
+    ```dart
+    Navigator.of(context).popUntil(PageA);
+    ```
+
+      APP: pageA -> pageB -> pageC
+
+      To
+
+      APP: pageA
+    <p align="center">
+      <img src="https://itome.team/blog/2019/12/flutter-advent-calendar-day10/navigator_pop_until.png"> 
+    </p>
+  - SystemNavigator.pop() => ปิดแอพเพื่อออกไปหน้า Menu เครื่อง
+
 </details>
+
+  
