@@ -520,5 +520,153 @@
   - SystemNavigator.pop() => ปิดแอพเพื่อออกไปหน้า Menu เครื่อง
 
 </details>
-
   
+<details><summary>API</summary>
+<hr>
+
+## ⤵️ API  
+- API คือ วิธีเรียกใช้งานโปรแกรม เป็นรูปแบบโปรแกรมกับโปรแกรม เพื่อใช้สำหรับการแลกเปลี่ยนข้อมูลระหว่างกัน ผ่านทาง Internet โดย
+    โปรแกรมต้นทาง จะเรียกว่า Server คอยเปิดและให้บริการข้อมูล
+    โปรแกรมปลายทาง จะเรียกว่า Client สำหรับเรียกใช้บริการจาก Server
+  - การทำงานของ API
+    - ผู้ให้บริการจะเป็นคนกำหนดกฏการเรียกใช้งานข้อมูล ซึ่งก่อนทำการเรียกใช้งาน API จะต้องรู้ว่าใช้คำสั่งอะไร (1 คำสั่ง = 1 API) 
+    - Request การส่งคำขอเพื่อใช้บริการ API
+    - Response การตอบกลับข้อมูลตามคำขอที่ส่งไป (ได้หรือไม่ได้)
+  - Open API คือ API ที่เปิดให้คนนอกสามารถเข้าถึงข้อมูลได้
+  - Web API คือ การให้บริการข้อมูลผ่าน Website โดย HTTP ซึ่งอยู่ในรูปแบบ XML และ JSON ซึ่งข้อมูล (ภาพ,เสียง,ข้อมูลทางธุรกิจ) จะเรียกว่า Resource
+    - HTTP Method คือ ตัวที่บ่งบอกการกระทำกับข้อมูล
+      - Get Method สำหรับร้องขอข้อมูล
+      - POST Method สำหรับสร้างข้อมูลใหม่
+      - PUT Method สำหรับอัพเดทข้อมูล
+      - DELETE Method สำหรับลบข้อมูล
+    - การใช้งาน Web API ใน Flutter ต้องทำการติดตั้ง HTTP Package เพื่อรับ/ส่ง ข้อมูล
+      - เรียกใช้งาน Web API ในส่วนของ initState() 
+      - กรอก url ของ API ที่ต้องการ
+      - ทำการทดสอบการผลแสดงข้อมูล ถ้าแสดงผลได้ปกติแปลว่าสามารถใช้งาน API นั้นได้ โดยข้อมูลที่เข้ามาถ้าอยู่ในรูปแบบ JSON ต้องทำการแปลงให้สามารถใช้งานใน dart ได้
+        ```dart
+        import 'package:http/http.dart' as http;  // ต้อง import package ก่อนการเรียกใช้งาน
+
+         @override
+         void initState() {
+            super.initState();
+            getExchangeRate();
+         }
+         Future<void> getExchangeRate() async {
+            var url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-by-provinces";
+            var response = await http.get(Uri.parse(url));
+            print(response.body);
+         }
+         ```
+       - แปลง JSON object ไปใช้ใน dart ด้วย https://app.quicktype.io/
+  - API and Forward Port
+    - Database on XAMPP (phpmyadmin)
+    - API Provide with Postman
+    - Forward Port with ngrok
+       - start with Run ngrok.exe > type "ngrok http 80" for forward port 80
+       - copy url at forward to emulator
+       - Stop sharing a port on Ngrok with Run ngrok.exe > type "taskkill /f /im ngrok.exe"
+
+  - More information for [Parse JSON in Dart/Flutter](https://codewithandrea.com/articles/parse-json-dart/)
+## ⤵️ FutureBuilder
+  - FutureBuilder ซึ่งเป็น async widgets
+  - การทำงานของ Flutter มี 2 แบบ คือ
+    - การทำงานแบบ Synchronous คือ การทำงานแบบตามลำดับ ต้องให้งานก่อนหน้าเสร็จก่อนถึงจะทำงานในขั้นตอนต่อไป
+    - การทำงานแบบ Asynchronous หรือ Non-blocking คือ การทำงานที่สามารถสลับไปทำงานอื่นได้โดยไม่ต้องรอกัน ซึ่งต้องมีการพ่วงการใช้งานกับ Future
+      - Future คือ การนำค่าที่เกิดขึ้นในอนาคตมาใช้งาน ซึ่งจะทำการเช็คข้อมูลที่เกิดขึ้นผ่าน State เช่น สมบูรณ์ (Complete), ไม่สมบูรณ์ (Incomplete) เป็นต้น เมื่อมีการทำงานแบบ Asynchronous จะมีการใช้งานร่วมกับคำสั่ง async และ await สำหรับรอให้ทำงานจนเสร็จ
+        ```dart
+        Future <return type> ชื่อ Future async {
+            await .....;
+        }
+        ```
+      - จำลองข้อมูลในอนาคตด้วย Future เช่น เราดึงข้อมูลผ่านเครือข่าย ก็จำเป็นจะต้องรอสักพักกว่าข้อมูลจะมา ก็เกิดเวลาที่ต้องรอขึ้น
+      - เหตุผลที่ต้องรู้จักกับข้อมูล Future ก็เพราะว่า ตัว FutureBuilder widget ที่จะใช้งานจำเป็นต้องใช้ข้อมูล Future
+      - รูปแบบการใช้งาน FutureBuilder
+        ```dart
+        FutureBuilder<String>( // กำหนดชนิดข้อมูล
+          future: _calculation, // ข้อมูล Future, ฟังก์ชันที่ต้องการเรียกใช้ แบบ Future
+          builder: (BuildContext context, AsyncSnapshot snapshot) { // สร้าง widget เมื่อได้ค่า snapshot ข้อมูลสุดท้าย
+            if (snapshot.hasData) { // ถ้าได้ค่าข้อมูลสุดท้าย
+              return Text('Completed');
+            } else if (snapshot.hasError) { // ถ้ามี error
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator(); // ค่าเริ่มต้น, แสดงตัว Loading. snapshot.connectionState == ConnectionState.waiting
+          },
+        ),
+        ```
+## ⤵️ การใช้งาน Http ดึงข้อมูลจาก Server มาแสดงใน Flutter
+  - ติดตั้ง http package
+  - กำหนดสิทธิ์การขอใช้งานเครือข่าย INTERNET สำหรับ Android : android > app > src > main > AndroidManifest.xml
+    ```xml
+    <manifest xmlns:android...>
+      ...
+      <uses-permission android:name="android.permission.INTERNET" />
+      <application ...
+    </manifest>
+    ```
+- จัดรูปแบบ Data Model ข้อมูลสำหรับรองรับข้อมูลจาก API
+  - ศึกษาโครงสร้างของข้อมูลที่จะนำมาใช้
+    ```json
+    [
+      {
+        "userId": 1,
+        "id": 1,
+        "title": "sunt aut facere repellat provident occaeenderit",
+        "body": "quia et suscipitnsuscipit recusatecto"
+      }
+    ]
+    ```
+  - จากรูปแบบข้างต้น เพื่อใช้งานก็ได้สามารถกำหนด Data Model สำหรับข้อมูลได้เป็นดังนี้ (โครงสร้างข้อมูล JSON String data ของเรามีด้วยกัน 4 ตัวคือ userID , id , title และ body เวลาสร้าง Data Model ไม่จำเป้นต้องใช้หมดทั้ง 4 ตัวก็ได้ อาจจะกำหนดแค่ id กับ title)
+    ```dart
+    class Article {
+      final int userId;
+      final int id;
+      final String title;
+      final String body;
+
+      Article({
+        required this.userId,
+        required this.id,
+        required this.title,
+        required this.body,
+      });
+
+      // ส่วนของ name constructor ที่จะแปลง json string มาเป็น Article object
+      factory Article.fromJson(Map<String, dynamic> json) {
+        return Article(
+          userId: json['userId'],
+          id: json['id'],
+          title: json['title'],
+          body: json['body'],
+        );
+      }
+    }
+    ```
+- กำหนดฟังก์ชันสำหรับดึงข้อมูล api ด้วย http package และการแปลงข้อมูล api ที่ได้มาในรูปแบบ JSON data เป็นในรูปแบบ List<Article> โดยใช้ฟังก์ชั่นของ Flutter มาช่วย
+  ```dart
+  Future getData() async { // สรัางฟังก์ชั่นดึงข้อมูล คืนค่ากลับมาเป็นข้อมูล Future
+    var response = await http.get(Uri.parse([MyConstant.domain](http://27.254.170.14/api1))); // ทำการดึงข้อมูลจาก server ตาม url ที่กำหนด
+    var jsonData = jsonDecode(response.body);
+    List<APIData> apiData = [];
+    for (var u in jsonData) {
+      APIData _getData = APIData(u["id"].toInt(), u["geom"], u["descriptio"], DateTime.parse(u["time"]), u["copyright"], u["province"], u["stationnam"], u["rainfall_v"].toInt(), u["rainfall_u"], u["temperatur"].toInt(), u["temperat_1"], u["geojson"]);
+      apiData.add(_getData);
+    }
+    return apiData; // return list of data
+  }
+  ```
+- ฟังก์ชันทำการดึงข้อมูลให้ได้ข้อมูล JSON String data มาแล้วอ่านข้อมูลจากแต่ละ tag เพื่อนำมาใส่ใน _getData
+- นำไปแสดงหรือใช้งานร่วมกับ FutureBuilder
+- การใช้งาน ListView Widget
+  - ListView Widget เป็น widget ที่ใช้ในการสร้างลิสรายการที่สามารถเลือนได้ โดยเรียงต่อกันเป็นแนว สามารถกำหนดลิสรายการเป็น widget ต่างๆ ส่วนใหญ่จะพบเห็นใช้บ่อยในการสร้างเป็นลิสรายการข้อความ  widget ยอ่ยหรือลิสรายการแต่ละรายการจะเรียงต่อหลังกันไปเรื่อยๆ ตามทิศทางการเลื่อน scroll ซึ่งเป็นได้ทั้งในแนวตั้งและแนวนอน ขึ้นอยู่กับการกำหนด
+      - การใช้งาน ListView() โดยทั่วไปจะใช้เป็น ListTile ที่จะมีรูปแบบที่สามารถกำหนด ส่วนของ leading, title, subtitle และ trailing เหมาะสำหรับรายการที่มีจำนวนไม่มาก เช่น 4 - 10 รายการหรือไม่ควรเกินขอบเขต
+        <p align="center">
+            <img src="https://i.imgur.com/TVFnolv.png"> 
+        </p>
+      - การใช้งาน ListView.builder() คล้ายกับ ListView แต่ลิสรายการจะไม่ถูกเรียกมาแสดงทั้งหมดในครั้งเดียว จะแสดงเฉพาะบางส่วนให้เต็มพื้นที่ที่มองเห็น และเมื่อทำการเลื่อน scroll ลงไปเพื่อแสดงรายการที่เหลือ ``ต้องกำหนด itemCount ไม่อย่างงั้นจะเกิด Range error นั่นคือไปวนลูปเพิ่มรายการเกินขอบเขตหรือเกินจำนวนที่มีจริง, itemBuilder จะสร้างรายการโดยเรียกใช้งานฟังก์ชั่น IndexedWidgetBuilder() โดยตัวฟังก์ชัน IndexedWidgetBuilder นี้จะวนลูป List หรืออาเรย์ของ context เมื่อเลื่อน scroll ลงไปเพื่อแสดงรายการเพิ่มเติม ก็จะทำการวนลูปแสดงรายการจาก index ที่เหลือต่อไปเรื่อยๆ
+        <p align="center">
+            <img src="https://i.imgur.com/9GVwUhs.png"> 
+        </p>
+      - การใช้งาน ListView.separated()
+      - การใช้งาน ListView.custom()
+</details>
