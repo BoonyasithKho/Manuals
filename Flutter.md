@@ -1890,6 +1890,10 @@ class _MyAppState extends State<MyApp> {
 <details><summary>Exercise</summary>
 <hr>
 	
+<p align="center">
+  <img src='images/Flutter_Excersise_Output.png'>
+</p>
+	
 <details><summary>🔡 Exercise 1 : Get Template</summary>
 <hr>
 	
