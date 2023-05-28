@@ -1822,7 +1822,6 @@ Bonus
    ```
 </details>
 
-  
 <details><summary>Call Another Application</summary>
 <hr>
   
@@ -1887,3 +1886,383 @@ class _MyAppState extends State<MyApp> {
 }
 ```
 </details>
+
+<details><summary>Exercise</summary>
+<hr>
+	
+<details><summary>🔡 Exercise 1 : Get Template</summary>
+<hr>
+	
+  1. Open VS code
+  2. Open Terminal
+  3. Clone template project
+      ```shell
+      git clone -b training_branch https://github.com/BoonyasithKho/project_template_flutter training_excersice
+      ```
+  4. Open directory and install flutter rename package
+      ```shell
+      flutter pub global activate rename
+      ```
+  5. Rename Application
+      ```shell
+      flutter pub global run rename --appname "Training Excercise"
+      flutter pub get
+      ```
+  6. In terminal type command:
+      ```shell
+      flutter run
+      ```
+  7. Open project folder and try to change theme color.
+  8. ทำความเข้าใจ code ในแต่ละส่วน
+ </details>
+
+<details><summary>🔡 Exercise 2 : Basic</summary>
+<hr>
+	
+  1. Create new screen ``first_screen.dart`` in folder 'screen'
+  2. Create class ``FirstScreen`` as a statefulwidget
+  3. Create Scaffold widget
+      ```dart
+      Scaffold();
+      ```
+      Add AppBar
+      ```dart
+      appBar: AppBar(
+        title: ShowTitle(
+          title: 'First Page',
+          textStyle: Theme.of(context).textTheme.displayLarge,
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      ```
+      Add Body
+      ```dart
+      body: Center(
+        child: Text('data'),
+      ),
+      ```
+  4. In main.dart : add ``'/firstScreen': (context) => const FirstScreen(),``
+  5. In my_constant.dart : Add ``static String routeFirstScreen = '/firstScreen';``
+  6. In landing_page.dart : Create button ``First Screen``, onpressed ``print('Go to First Screen');``
+  7. Add ``Navigator.pushNamed(context, MyConstant.routeFirstScreen);``
+  8. In FirstScreen > Add Row Widget 2 children : 
+     - Add Container Color yellow
+     - Add Column 4 children (image1, image2, image3, image4)
+  9. Add text widget ``Your name`` in Yellow box and set center
+  10. Add space between item
+  11. Print 'Your name' in debug console when the yellow box was tapped.
+ </details>
+
+<details><summary>🔡 Exercise 3 : Show Map</summary>
+<hr>
+	
+  1. Create new page ``SecondScreen``
+  2. Create button ``Second Screen`` in landing page, onpressed ``print('Go to Second Screen');``
+  3. Update route in main.dart, my_constant.dart, landing_page.dart
+  4. Start Debug
+  5. Add package flutter_map (lastest version), latlong2 (lastest version) to pubspec.yaml and save
+  6. In class SecondScreen add flutter map in scafold widget
+      ```dart
+      FlutterMap(options: MapOption())
+      ```
+  7. Set MapOption
+      center = ``'your location'`` 
+      zoom level = ``6`` 
+      max zoom level = ``20``
+      default map layer = ``'https://tile.openstreetmap.org/{z}/{x}/{y}.png'``
+  8. Change map layer to sphere map layer and google map layer
+     ```
+     Sphere Basemap > 'https://basemap.sphere.gistda.or.th/tiles/sphere_streets/EPSG3857/{z}/{x}/{y}.png?key=test2022'
+     Sphere Satellite > 'https://basemap.sphere.gistda.or.th/tiles/thailand_images/EPSG3857/{z}/{x}/{y}.jpeg?key=test2022'
+     Google Basemap > 'https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}'
+     Google Satellite > 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
+     ```
+  9. Add FloatingActionButton for zoom in (level 18) and zoom out (level 6) when tap
+  10. Add Marker Layer to show your location on map
+  11. Add Button on map for select/switch basemap
+      - Create new list with url of 2 basemaps
+      - Create new list with tms 
+</details>
+
+<details><summary>🔡 Exercise 4 : Get Data From API</summary>
+<hr>
+
+  1. Create new page ``ThirdScreen``
+  2. Create button ``Third Screen`` in landing page, onpressed ``print('Go to Third Screen');``
+  3. Update route in main.dart, my_constant.dart, landing_page.dart
+  4. Start Debug
+  5. Add package http (lastest version) to pubspec.yaml and save
+  6. In class ThirdScreen add AppBar and body with [FutureBuilder widget](https://medium.com/pnpsolution/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89-futurebuilder-%E0%B9%83%E0%B8%99-flutter-aa9c960c9341)
+      ```dart
+      FutureBuilder(
+        future: getData(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) { // snapshot.data == null
+            return Container(
+              child: const Center(
+                child: Text('Loading...'),
+              ),
+            );
+          } else {
+            if (snapshot.connectionState == ConnectionState.done) {
+              for (var i = 0; i < snapshot.data.length; i++) {
+                Map<String, dynamic> map = jsonDecode(snapshot.data[i].geojson);
+                allLocPoint.add(map['coordinates']);
+              }
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Text(snapshot.data[index].id.toString()),
+                    title: Text('สถานี ${snapshot.data[index].stationname} จ.${snapshot.data[index].province}'),
+                    subtitle: Text('พิกัด : ${allLocPoint[index].toString()}'),
+                    trailing: Text('${snapshot.data[index].rainfallValue} ${snapshot.data[index].rainfallUnit}'),
+                  );
+                },
+              );
+            }
+          }
+          return const LinearProgressIndicator();
+        },
+      ),
+      ```
+  7. Create method for get data from API ``getData()``
+      ```dart
+     Future getData() async {
+        var response = await http.get(Uri.parse(MyConstant.domain));
+        var jsonData = jsonDecode(response.body);
+        List<APIData> apiData = [];
+        for (var u in jsonData) {
+          APIData _getData = APIData(u["id"].toInt(), u["geom"], u["descriptio"], DateTime.parse(u["time"]), u["copyright"], u["province"], u["stationnam"], u["rainfall_v"].toInt(),
+              u["rainfall_u"], u["temperatur"].toInt(), u["temperat_1"], u["geojson"]);
+          apiData.add(_getData);
+        }
+        // print(apiData.length);
+        return apiData;
+      }
+      ```
+  8. Get Json data from your API and add to List<APIData> (note: You must to create model folder which include ``apidata_model.dart``)
+  9. In ``apidata_model.dart`` create class APIData which has all column name from your API and make constructor (note: constructor เป็น Method ที่มีชื่อเดียวกับ Class โดยจะใช้กำหนดค่าเริ่มต้นให้กับ Class ที่เป็น Instance โดย Constructor จะถูกเรียกใช้งานอัตโนมัติ และจะต้องทำการ ใส่ค่า Parameters ตามจำนวน Argument ของ Constructor Class นั้น ๆ)
+      ```dart
+       class APIData {
+          final int id;
+          final String geom;
+          final String description;
+          final DateTime time;
+          final String copyright;
+          final String province;
+          final String stationname;
+          final int rainfallValue;
+          final String rainfallUnit;
+          final int temperatureValue;
+          final String temperatureUnit;
+          final String geojson;
+
+          APIData(this.id, this.geom, this.description, this.time, this.copyright, this.province, this.stationname, this.rainfallValue, this.rainfallUnit, this.temperatureValue,
+              this.temperatureUnit, this.geojson);
+        }
+      ```
+  10. Create FloatingActionButton for print location of all points in console and popup dialog of number record.
+      ```dart
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(allLocPoint);
+          MyDialog().normalDialog(context, 'จำนวนข้อมูล', '${apiData.length} Records');
+        },
+        child: const Icon(Icons.outbond),
+      ),
+      ```
+</details>
+
+<details><summary>🔡 Exercise 5 : Web map and API Data</summary>
+<hr>
+  
+  1. Create new page ``FourthScreen``
+  2. Create button ``Fourth Screen`` in landing page, onpressed ``print('Go to Fourth Screen');``
+  3. Update route in main.dart, my_constant.dart, landing_page.dart
+  4. Start Debug
+  5. In class FourthScreen show basemap like Third Screen with button
+  6. Change icon in bottom right button to Icons.refresh with onpressed ``mapController.move(location, 6.0);``
+      ```dart
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () {
+          setState(() {
+            mapController.move(location, 6.0);
+          });
+        },
+        child: Icon(
+          Icons.refresh,
+          color: Theme.of(context).iconTheme.color,
+        ),
+      ),
+      ```
+  7. Get API Service for create list of marker like Forth Screen
+      ```dart
+      Future getData() async {
+        var response = await http.get(Uri.parse(MyConstant.domain));
+        var jsonData = jsonDecode(response.body);
+
+        for (var u in jsonData) {
+          // defined u["..."] follow your api field
+          APIData getData = APIData(u["id"].toInt(), u["geom"], u["descriptio"], DateTime.parse(u["time"]), u["copyright"], u["province"], u["stationnam"], u["rainfall_v"].toInt(), u["rainfall_u"], u["temperatur"].toInt(), u["temperat_1"], u["geojson"]);
+          apiData.add(getData);
+        }
+
+        for (var i = 0; i < apiData.length; i++) {
+          Map<String, dynamic> map = jsonDecode(apiData[i].geojson);
+          allLocPoint.add(map['coordinates']);
+        }
+
+        Timer(const Duration(seconds: 1), () {
+          getmarkers();
+        });
+      }
+
+      List<Marker> getmarkers() {
+        for (var i = 0; i < apiData.length; i++) {
+          List allLocPoints = [];
+          Map<String, dynamic> map = jsonDecode(apiData[i].geojson);
+          allLocPoints = map['coordinates'];
+
+          setState(
+            () {
+              var pointMarker = LatLng(allLocPoints[1].toDouble(), allLocPoints[0].toDouble());
+              markers.add(
+                Marker(
+                  point: pointMarker,
+                  builder: (context) => const Icon(Icons.location_pin, color: Colors.green),
+                ),
+              );
+            },
+          );
+        }
+        return markers;
+      }
+      ```
+  8. Create Popup when tap on marker using ``show_markerpopup.dart`` in widgets folder for creat tooltip/popup of marker
+      ```dart
+      import 'package:flutter/material.dart';
+      import 'package:flutter/src/widgets/framework.dart';
+      import 'package:flutter/src/widgets/placeholder.dart';
+
+      import '../utils/my_theme.dart';
+
+      class ShowMarkerPopup extends StatefulWidget {
+        final Widget child;
+        final String? tooltip;
+        final Function onTap;
+
+        const ShowMarkerPopup({super.key, required this.child, this.tooltip, required this.onTap});
+
+        @override
+        State<ShowMarkerPopup> createState() => _ShowMarkerPopupState();
+      }
+
+      class _ShowMarkerPopupState extends State<ShowMarkerPopup> {
+        final key = GlobalKey();
+        @override
+        Widget build(BuildContext context) {
+          return InkWell(
+            onTap: () {
+              dynamic tooltip = key.currentState;
+              tooltip.ensureTooltipVisible();
+              widget.onTap();
+            },
+            enableFeedback: true,
+            child: Container(
+              child: Tooltip(
+                key: key,
+                message: widget.tooltip,
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: widget.child,
+              ),
+            ),
+          );
+        }
+      }
+      ```
+  9. Change builder in marker.add() with
+      ```dart
+      builder: (context) {
+        return ShowMarkerPopup(
+          tooltip:
+            'Station name: ${apiData[i].stationname}\nTemperature : ${apiData[i].temperatureValue} ${apiData[i].temperatureUnit}\nRain Volumn : ${apiData[i].rainfallValue}  ${apiData[i].rainfallUnit}',
+          onTap: () {},
+          child: const Icon(
+            Icons.location_on_rounded,
+            size: 20,
+            color: Colors.blue,
+            shadows: [
+              BoxShadow(
+                color: Colors.black,
+                blurRadius: 10.0,
+              ),
+            ],
+          ),
+        );
+      },
+      ```
+  10. Tap on marker
+  11. Add Web Map Service to show
+      ```dart
+      TileLayer(
+        wmsOptions: WMSTileLayerOptions(
+          baseUrl:
+            'https://gistdaportal.gistda.or.th/data/rest/services/GFlood/GFlood_Inno_WMS_FloodArea/MapServer/export?dpi=96&transparent=true&format=png32&bboxSR=102100&imageSR=102100&f=image&layers=0',
+          ),
+          minZoom: 6,
+          opacity: 0.5,
+          backgroundColor: Colors.transparent,
+      ),
+      ```
+</details>
+
+<details><summary>🔡 Exercise 6 : Webview</summary>
+<hr>
+	
+  1. Create new page ``FifthScreen``
+  2. Create button ``Fifth Screen`` in landing page, onpressed ``print('Go to Fifth Screen');``
+  3. Update route in main.dart, my_constant.dart, landing_page.dart
+  4. Start Debug
+  5. Add package webview_flutter (lastest version) to pubspec.yaml and save
+  6. In class FifthScreen add WebViewWidget in scafold widget
+      ```dart
+      Scaffold(
+          body: SafeArea(
+            child: Stack(
+              children: [
+                WebViewWidget(
+                  controller: controller,
+                ),
+              ],
+            ),
+          ),
+      );
+      ```
+  7. Create initial state for controller and set Url from website to show in app
+      ```dart
+        @override
+        void initState() {
+          controller = WebViewController();
+          super.initState();
+          controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+          controller.loadRequest(
+            Uri.parse('your url'),
+          );
+        }
+      ```
+  8. Add parameter controller
+      ```dart
+      late final WebViewController controller;
+      ```
+  9. Test your webview widget
+</details>
+	
+</details>
+	
+  
