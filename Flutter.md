@@ -76,7 +76,7 @@
    - Install extension : Flutter, Dart, Highlight Matching Tag, Lorem ipsum, Dart Data Class, GitHub Pull Requests and Issues
 
 </details>
-<details><summary>Dart 101</summary>
+<details><summary>Dart(101)</summary>
 <hr>
   
 ## ⌨️ What is Dart?
