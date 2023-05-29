@@ -1024,6 +1024,30 @@
     key: map,
   ),
   ```
+- ปิดการหมุนแผนที่
+  ```dart
+  widget.map.currentState?.call("Renderer.touchZoomRotate.disableRotation");
+  ```
+- ปิดการใช้งานเครื่องมือแผนที่มาตรฐานของ Sphere map
+  ```dart
+  options: {
+              "ui": Sphere.SphereStatic("UiComponent", "None"),
+            },
+  ```
+- การเรียกใช้งาน WMS จาก ArcGIS Server ต้องกำหนด "id" เนื่องจาก ArcGIST Server มีการกำหนดชื่อ Layer เป็นตัวเลข ทำให Spheremap มองเห็นเป็น layer เดียวกัน
+  ```dart
+      final layerPM = Sphere.SphereObject("Layer", args: [
+      "0",
+      {
+        "url": pmMap,
+        "type": Sphere.SphereStatic("LayerType", "WMS"),
+        "opacity": 0.8,
+        "zIndex": 5,
+        "id": "unique_1",
+      }
+    ]);
+  ```
+
 </details>
 
 <details><summary>Webview</summary>
