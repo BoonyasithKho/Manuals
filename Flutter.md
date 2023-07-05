@@ -1179,47 +1179,158 @@
       final charts.Color barColor;
 
       ChartData({
-    	required this.id,
-    	required this.year,
-    	required this.sales,
-    	required this.barColor,
+        required this.id,
+        required this.year,
+        required this.sales,
+        required this.barColor,
       });
     }
     ```
 3. Create class ChartsFlutter for config chart style
     ```dart
-    class ChartData {
-      final String id;
-      final String year;
-      final int sales;
-      final charts.Color barColor;
+    import 'package:flutter/material.dart';
+    import 'package:charts_flutter/flutter.dart' as charts;
+    import 'datamodel.dart';
+    
+    class ChartsFlutter extends StatelessWidget {
+      final List<List<ChartData>> data;
+      const ChartsFlutter({super.key, required this.data});
 
-      ChartData({
-    	required this.id,
-    	required this.year,
-    	required this.sales,
-    	required this.barColor,
-      });
+      @override
+      Widget build(BuildContext context) {
+        List<charts.Series<ChartData, String>> series = [];
+        for (var element = 0; element < data.length; element++) {
+          series.add(
+            charts.Series(
+              id: data[element].first.id,
+              data: data[element],
+              domainFn: (ChartData series, _) => series.year,
+              measureFn: (ChartData series, _) => series.sales,
+              colorFn: (ChartData series, _) => series.barColor,
+            ),
+          );
+        }
+        return Container(
+          height: 300,
+          padding: const EdgeInsets.all(20),
+          child: Card(
+            child: Column(
+              children: [
+                Text(
+                  'World of Flutter Subscribers by Year',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                Expanded(
+                  child: charts.BarChart(series,
+                    animate: true,
+                    barGroupingType: charts.BarGroupingType.grouped,
+                    vertical: true, // 'false' in horizontal
+                    behaviors: [
+                      charts.SeriesLegend(
+                        position: charts.BehaviorPosition.bottom,
+                      ),
+                    ],
+                    defaultRenderer: charts.BarRendererConfig(
+                      // By default, bar renderer will draw rounded bars with a constant radius of 100.
+                      // To not have any rounded corners, use [NoCornerStrategy]
+                      // To change the radius of the bars, use [ConstCornerStrategy]
+                      cornerStrategy: const charts.ConstCornerStrategy(10),
+                    ),
+                    primaryMeasureAxis: const charts.NumericAxisSpec(
+                      tickProviderSpec: charts.BasicNumericTickProviderSpec(
+                        desiredTickCount: 5,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
     }
     ```
-
 4. Add data of saling to code
     ```dart
-    class ChartData {
-      final String id;
-      final String year;
-      final int sales;
-      final charts.Color barColor;
-
-      ChartData({
-    	required this.id,
-    	required this.year,
-    	required this.sales,
-    	required this.barColor,
-      });
-    }
+    final desktopSalesData = [
+      ChartData(
+        id: 'Desktop',
+        year: '2014',
+        sales: 5,
+        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      ),
+      ChartData(
+        id: 'Desktop',
+        year: '2015',
+        sales: 25,
+        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      ),
+      ChartData(
+        id: 'Desktop',
+        year: '2016',
+        sales: 100,
+        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      ),
+      ChartData(
+        id: 'Desktop',
+        year: '2017',
+        sales: 75,
+        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      ),
+    ];
+    final tableSalesData = [
+      ChartData(
+        id: 'Tablet',
+        year: '2014',
+        sales: 25,
+        barColor: charts.ColorUtil.fromDartColor(Colors.red),
+      ),
+      ChartData(
+        id: 'Tablet',
+        year: '2015',
+        sales: 50,
+        barColor: charts.ColorUtil.fromDartColor(Colors.red),
+      ),
+      ChartData(
+        id: 'Tablet',
+        year: '2016',
+        sales: 10,
+        barColor: charts.ColorUtil.fromDartColor(Colors.red),
+      ),
+      ChartData(
+        id: 'Tablet',
+        year: '2017',
+        sales: 20,
+        barColor: charts.ColorUtil.fromDartColor(Colors.red),
+      ),
+    ];
+    final mobileSalesData = [
+      ChartData(
+        id: 'Mobile',
+        year: '2014',
+        sales: 10,
+        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+      ),
+      ChartData(
+        id: 'Mobile',
+        year: '2015',
+        sales: 15,
+        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+      ),
+      ChartData(
+        id: 'Mobile',
+        year: '2016',
+        sales: 50,
+        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+      ),
+      ChartData(
+        id: 'Mobile',
+        year: '2017',
+        sales: 45,
+        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+      ),
+    ];
     ```
-
 5. Add ChartsFlutter to code
     ```dart
     @override
@@ -1233,7 +1344,6 @@
       );
     }
     ```
-6. 
 </blockquote></details>	
 </details>
 
