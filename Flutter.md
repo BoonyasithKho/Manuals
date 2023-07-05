@@ -1116,9 +1116,10 @@
 
 </details>    
 
-<details><summary>Chart</summary>
-<hr>
+<details><summary>Chart</summary><blockquote>
 
+<details><summary>syncfusion_flutter_charts</summary><blockquote>
+	
 1. Get package ``syncfusion_flutter_charts`` and install
 2. Add SfCartesianChart or other type to code
     ```dart
@@ -1165,6 +1166,75 @@
     ```dart
     tooltipBehavior: _tooltipBehavior,
     ```
+</blockquote></details>
+<details><summary>charts_flutter</summary><blockquote>
+
+1. Get package ``charts_flutter`` and install
+2. Create class ChartData for model of data
+    ```dart
+    class ChartData {
+      final String id;
+      final String year;
+      final int sales;
+      final charts.Color barColor;
+
+      ChartData({
+    	required this.id,
+    	required this.year,
+    	required this.sales,
+    	required this.barColor,
+      });
+    }
+    ```
+3. Create class ChartsFlutter for config chart style
+    ```dart
+    class ChartData {
+      final String id;
+      final String year;
+      final int sales;
+      final charts.Color barColor;
+
+      ChartData({
+    	required this.id,
+    	required this.year,
+    	required this.sales,
+    	required this.barColor,
+      });
+    }
+    ```
+
+4. Add data of saling to code
+    ```dart
+    class ChartData {
+      final String id;
+      final String year;
+      final int sales;
+      final charts.Color barColor;
+
+      ChartData({
+    	required this.id,
+    	required this.year,
+    	required this.sales,
+    	required this.barColor,
+      });
+    }
+    ```
+
+5. Add ChartsFlutter to code
+    ```dart
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: Center(
+          child: ChartsFlutter(
+            data: [desktopSalesData, tabletSalesData, mobileSalesData],
+          ),
+        ),
+      );
+    }
+    ```
+6. 
+</blockquote></details>	
 </details>
 
 <details><summary>Flutter Firebase</summary>
