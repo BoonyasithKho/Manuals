@@ -1169,7 +1169,7 @@
 </blockquote></details>
 <details><summary>charts_flutter</summary><blockquote>
 
-1. Get package ``charts_flutter`` and install
+1. Get package ``charts_flutter`` and install [ref.](https://google.github.io/charts/flutter/gallery.html)
 2. Create class ChartData for model of data
     ```dart
     class ChartData {
