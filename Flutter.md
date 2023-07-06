@@ -1280,7 +1280,7 @@
         barColor: charts.ColorUtil.fromDartColor(Colors.blue),
       ),
     ];
-    final tableSalesData = [
+    final tabletSalesData = [
       ChartData(
         id: 'Tablet',
         year: '2014',
