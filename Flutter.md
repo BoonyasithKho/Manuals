@@ -1172,6 +1172,8 @@
 1. Get package ``charts_flutter`` and install [ref.](https://google.github.io/charts/flutter/gallery.html)
 2. Create class ChartData for model of data
     ```dart
+    import 'package:charts_flutter/flutter.dart' as charts;
+    
     class ChartData {
       final String id;
       final String year;
