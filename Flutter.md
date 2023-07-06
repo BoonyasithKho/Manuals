@@ -1252,98 +1252,97 @@
       }
     }
     ```
-4. Add data of saling to code
+4. Add example data of saling to code and show ChartsFlutter in body
     ```dart
-    final desktopSalesData = [
-      ChartData(
-        id: 'Desktop',
-        year: '2014',
-        sales: 5,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-      ),
-      ChartData(
-        id: 'Desktop',
-        year: '2015',
-        sales: 25,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-      ),
-      ChartData(
-        id: 'Desktop',
-        year: '2016',
-        sales: 100,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-      ),
-      ChartData(
-        id: 'Desktop',
-        year: '2017',
-        sales: 75,
-        barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-      ),
-    ];
-    final tabletSalesData = [
-      ChartData(
-        id: 'Tablet',
-        year: '2014',
-        sales: 25,
-        barColor: charts.ColorUtil.fromDartColor(Colors.red),
-      ),
-      ChartData(
-        id: 'Tablet',
-        year: '2015',
-        sales: 50,
-        barColor: charts.ColorUtil.fromDartColor(Colors.red),
-      ),
-      ChartData(
-        id: 'Tablet',
-        year: '2016',
-        sales: 10,
-        barColor: charts.ColorUtil.fromDartColor(Colors.red),
-      ),
-      ChartData(
-        id: 'Tablet',
-        year: '2017',
-        sales: 20,
-        barColor: charts.ColorUtil.fromDartColor(Colors.red),
-      ),
-    ];
-    final mobileSalesData = [
-      ChartData(
-        id: 'Mobile',
-        year: '2014',
-        sales: 10,
-        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
-      ),
-      ChartData(
-        id: 'Mobile',
-        year: '2015',
-        sales: 15,
-        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
-      ),
-      ChartData(
-        id: 'Mobile',
-        year: '2016',
-        sales: 50,
-        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
-      ),
-      ChartData(
-        id: 'Mobile',
-        year: '2017',
-        sales: 45,
-        barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
-      ),
-    ];
-    ```
-5. Add ChartsFlutter to code
-    ```dart
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        body: Center(
-          child: ChartsFlutter(
-            data: [desktopSalesData, tabletSalesData, mobileSalesData],
-          ),
+    class _MyHomePageState extends State<MyHomePage> {
+      final desktopSalesData = [
+        ChartData(
+          id: 'Desktop',
+          year: '2014',
+          sales: 5,
+          barColor: charts.ColorUtil.fromDartColor(Colors.blue),
         ),
-      );
+        ChartData(
+          id: 'Desktop',
+          year: '2015',
+          sales: 25,
+          barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+        ),
+        ChartData(
+          id: 'Desktop',
+          year: '2016',
+          sales: 100,
+          barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+        ),
+        ChartData(
+          id: 'Desktop',
+          year: '2017',
+          sales: 75,
+          barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+        ),
+      ];
+      final tabletSalesData = [
+        ChartData(
+          id: 'Tablet',
+          year: '2014',
+          sales: 25,
+          barColor: charts.ColorUtil.fromDartColor(Colors.red),
+        ),
+        ChartData(
+          id: 'Tablet',
+          year: '2015',
+          sales: 50,
+          barColor: charts.ColorUtil.fromDartColor(Colors.red),
+        ),
+        ChartData(
+          id: 'Tablet',
+          year: '2016',
+          sales: 10,
+          barColor: charts.ColorUtil.fromDartColor(Colors.red),
+        ),
+        ChartData(
+          id: 'Tablet',
+          year: '2017',
+          sales: 20,
+          barColor: charts.ColorUtil.fromDartColor(Colors.red),
+        ),
+      ];
+      final mobileSalesData = [
+        ChartData(
+          id: 'Mobile',
+          year: '2014',
+          sales: 10,
+          barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+        ),
+        ChartData(
+          id: 'Mobile',
+          year: '2015',
+          sales: 15,
+          barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+        ),
+        ChartData(
+          id: 'Mobile',
+          year: '2016',
+          sales: 50,
+          barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+        ),
+        ChartData(
+          id: 'Mobile',
+          year: '2017',
+          sales: 45,
+          barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+        ),
+      ];
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          body: Center(
+            child: ChartsFlutter(
+              data: [desktopSalesData, tabletSalesData, mobileSalesData],
+            ),
+          ),
+        );
+      }
     }
     ```
 </blockquote></details>	
