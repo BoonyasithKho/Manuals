@@ -2114,7 +2114,7 @@ class _MyAppState extends State<MyApp> {
       ```
   5. Rename Application
       ```shell
-      flutter pub global run rename --appname "Training Excercise"
+      flutter pub global run rename setAppName --targets ios,android --value "training_exercise"
       flutter pub get
       ```
   6. In terminal type command:
