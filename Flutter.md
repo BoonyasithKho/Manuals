@@ -213,6 +213,7 @@
   
      ```shell
      xcodebuild -downloadPlatform iOS
+     gem install drb -v 2.0.
      open -a Simulator
      ```
    - Install cocoapods
