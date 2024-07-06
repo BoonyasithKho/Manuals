@@ -213,7 +213,8 @@
   
      ```shell
      xcodebuild -downloadPlatform iOS
-     gem install drb -v 2.0.
+     curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
+     gem install drb -v 2.0.6
      open -a Simulator
      ```
    - Install cocoapods
