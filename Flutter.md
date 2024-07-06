@@ -212,6 +212,7 @@
    - Set up the iOS simulator. On your Mac, find the Simulator via Spotlight or by using the following command:
   
      ```shell
+     xcodebuild -downloadPlatform iOS
      open -a Simulator
      ```
    - Install cocoapods
