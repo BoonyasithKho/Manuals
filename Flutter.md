@@ -217,6 +217,14 @@
      gem install drb -v 2.0.6
      open -a Simulator
      ```
+     if error:
+     	clone https://github.com/CocoaPods/Xcodeproj
+edit Gemfile.lock and xcodeproj.gemspec changing rexml version to 3.3.0
+run rake build
+run gem install rexml -v 3.3.0 (I did this with and without sudo)
+run gem install --local pkg/xcodeproj-1.24.0.gem (I did this with and without sudo)
+running again pod install in project folder and now completes normally
+     
    - Install cocoapods
   
      ```shell
