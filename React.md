@@ -1,4 +1,4 @@
-React
+# :wave: Welcome to Flutter Manual's "Introduction to React JS"
 
 - Software Installation
 Node.js https://nodejs.org
