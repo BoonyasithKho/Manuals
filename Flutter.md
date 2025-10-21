@@ -2102,7 +2102,14 @@ class _MyAppState extends State<MyApp> {
 }
 ```
 </details>
-
+<details><summary>Run in iOS</summary>
+<hr>
+	Flutter app without my usb cable connected
+	```shell
+	flutter run --release
+	```
+<hr>
+</details>
 <details><summary>Exercise</summary>
 <hr>
 	
