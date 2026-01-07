@@ -19,39 +19,39 @@
 - IDE แนะนำ: VS Code หรือ Android Studio
 </details>
 
-    <details><summary>📍 Setup Flutter</summary>
-    
-      <details><summary>🏷️ Install Flutter SDK</summary>
+<details><summary>📍 Setup Flutter</summary>
 
-    - Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
-    - If you setup in Mac Silicon, you must to install Rosetta
+  <details><summary>🏷️ Install Flutter SDK</summary>
+
+- Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
+- If you setup in Mac Silicon, you must to install Rosetta
+
+  ```shell
+  sudo softwareupdate --install-rosetta --agree-to-license
+  ```
+
+- Extract the file in the desired location, for example:
+
+  ```shell
+  cd ~/Flutter
+  unzip ~/Downloads/flutter_macos_3.3.2-stable.zip
+  ```
+
+- Add the flutter tool to your path with 'pwd => path of flutter':
 
       ```shell
-      sudo softwareupdate --install-rosetta --agree-to-license
+      vim .zshrc
+      Press 'I'
+        export PATH=/Users/username/Documents/Flutter/ENV/flutter/bin:$PATH
+      Press ESC
+      Type ':wq!'
       ```
-
-    - Extract the file in the desired location, for example:
 
       ```shell
-      cd ~/Flutter
-      unzip ~/Downloads/flutter_macos_3.3.2-stable.zip
+      export PATH="$PATH:/Users/username/Documents/Flutter/ENV/flutter/bin"
       ```
 
-    - Add the flutter tool to your path with 'pwd => path of flutter':
-
-          ```shell
-          vim .zshrc
-          Press 'I'
-            export PATH=/Users/username/Documents/Flutter/ENV/flutter/bin:$PATH
-          Press ESC
-          Type ':wq!'
-          ```
-
-          ```shell
-          export PATH="$PATH:/Users/username/Documents/Flutter/ENV/flutter/bin"
-          ```
-
-    </details>
+</details>
 
 <details><summary>🏷️ ตรวจสอบด้วย Flutter doctor**</summary>
 
