@@ -53,7 +53,7 @@
 
 </details>
 
-<details><summary>🏷️ ตรวจสอบด้วย Flutter doctor**</summary>
+<details><summary>🏷️ ตรวจสอบด้วย Flutter doctor</summary>
 
 - ถ้ามีสถานะ [!] ให้แก้ทีละอันจนเป็น [✓] ตามคำแนะนำ
 
@@ -63,16 +63,18 @@
 
   </details>
 
-- **Install Xcode (สำหรับ MacOS)**
+<details><summary>🏷️ Install Xcode (สำหรับ MacOS)</summary>
 
-  - Get the Xcode at: https://developer.apple.com/xcode/.
-  - Configure the Xcode by running the following from the command line:
+- Get the Xcode at: https://developer.apple.com/xcode/.
+- Configure the Xcode by running the following from the command line:
 
-    ```shell
-    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-    sudo xcodebuild -runFirstLaunch
-    sudo xcodebuild -license
-    ```
+  ```shell
+  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+  sudo xcodebuild -runFirstLaunch
+  sudo xcodebuild -license
+  ```
+
+  </details>
 
 - **CocoaPods (จำเป็นสำหรับ iOS plugins)**
 
