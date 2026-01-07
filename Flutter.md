@@ -12,13 +12,14 @@
   - UI ทำได้ยืดหยุ่นและสวย (Material / Cupertino / Custom)
   </details>
 
-## 📍 Tools
+<details><summary>📍 Tools</summary>
 
 - [pub.dev](https://pub.dev/) : The official package repository for Dart and Flutter apps.
 - [Icon](https://fonts.google.com/icons) : Material Symbols
 - IDE แนะนำ: VS Code หรือ Android Studio
+</details>
 
-## 📍 Create Project
+<details><summary>📍 Create Project</summary>
 
 - วิธี VS Code
 
