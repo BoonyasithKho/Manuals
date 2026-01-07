@@ -19,13 +19,9 @@
   - วิธี VS Code
 
     1. Open VS Code > Invoke View > Command Palette
-
     2. Type “flutter”, and select the **Flutter: New Project**
-
     3. Select Application
-
     4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-
     5. Wait for project creation to complete and the main.dart file to appear
 
   - วิธี CLI
@@ -45,15 +41,10 @@
 - **Structure of Project**
 
   📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
-
   📁 `test\` unit/widget tests
-
   📁 `android\` และ `ios\` ใช้สำหรับการเก็บโปรเจคของ Application แต่ละระบบ เมื่อทำการรันจะมีการเก็บลงตามระบบปฏิบัติการที่รัน ซึ่งสามารถทำการแก้ไขในแต่ละระบบปฏิบัติการ
-
   📁 `assets\` This folder contains any static assets, such as images or fonts, that are required by your app
-
   🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
-
   🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
 - **First Project with Flutter** 1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app. 2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter. 3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value. 4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
