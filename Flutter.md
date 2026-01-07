@@ -89,7 +89,7 @@
     ```
 
 - **Install VS Code + Extensions**
-
+  - Download and install [VSCode](https://code.visualstudio.com/Download)
   - Extensions แนะนำ:
     - Flutter
     - Dart
