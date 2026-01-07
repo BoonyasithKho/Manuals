@@ -125,8 +125,9 @@
 ```
 
 </details>
-
+<hr>
 </details>
+
 <details><summary>Setup Flutter</summary>
 <hr>
 
