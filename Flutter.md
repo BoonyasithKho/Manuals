@@ -21,7 +21,7 @@
 
 <details><summary>📍 Setup Flutter</summary>
 
-> <details>
+  <details>
 
   <summary><b>🏷️ Install Flutter SDK</b></summary>
 
