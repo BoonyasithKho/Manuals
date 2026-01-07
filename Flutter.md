@@ -51,15 +51,17 @@
       export PATH="$PATH:/Users/username/Documents/Flutter/ENV/flutter/bin"
       ```
 
+</details>
+
+<details><summary><b>ตรวจสอบด้วย Flutter doctor**</b></summary>
+
+- ถ้ามีสถานะ [!] ให้แก้ทีละอันจนเป็น [✓] ตามคำแนะนำ
+
+  ```shell
+  flutter doctor
+  ```
+
   </details>
-
-- **ตรวจสอบด้วย Flutter doctor**
-
-  - ถ้ามีสถานะ [!] ให้แก้ทีละอันจนเป็น [✓] ตามคำแนะนำ
-
-    ```shell
-    flutter doctor
-    ```
 
 - **Install Xcode (สำหรับ MacOS)**
 
