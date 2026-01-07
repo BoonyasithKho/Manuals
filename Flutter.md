@@ -53,57 +53,62 @@
 
   🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
-- **First Project with Flutter** 1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app. 2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter. 3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value. 4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
+- **First Project with Flutter** 1
 
-      import 'package:flutter/material.dart';
+  1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app.
+  2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter.
+  3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value.
+  4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
 
-      void main() => runApp(const MyApp());
+     import 'package:flutter/material.dart';
 
-      class MyApp extends StatelessWidget {
-        const MyApp({super.key});
+     void main() => runApp(const MyApp());
 
-        @override
-        Widget build(BuildContext context) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(primarySwatch: Colors.blue),
-            home: const MyHomePage(title: 'Home'),
-          );
-        }
-      }
+     class MyApp extends StatelessWidget {
+     const MyApp({super.key});
 
-      class MyHomePage extends StatefulWidget {
-        const MyHomePage({super.key, required this.title});
-        final String title;
+     @override
+     Widget build(BuildContext context) {
+     return MaterialApp(
+     title: 'Flutter Demo',
+     theme: ThemeData(primarySwatch: Colors.blue),
+     home: const MyHomePage(title: 'Home'),
+     );
+     }
+     }
 
-        @override
-        State<MyHomePage> createState() => \_MyHomePageState();
-      }
+     class MyHomePage extends StatefulWidget {
+     const MyHomePage({super.key, required this.title});
+     final String title;
 
-      class _MyHomePageState extends State<MyHomePage> {
-        int counter = 0;
-        void increment() => setState(() => counter++);
+     @override
+     State<MyHomePage> createState() => \_MyHomePageState();
+     }
 
-        @override
-        Widget build(BuildContext context) {
-          return Scaffold(
-            appBar: AppBar(title: Text(widget.title)),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('You clicked this many times:'),
-                  Text('$counter', style: Theme.of(context).textTheme.headlineMedium),
-                ],
-              ),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: increment,
-              child: const Icon(Icons.add),
-            ),
-          );
-        }
-      }
+     class \_MyHomePageState extends State<MyHomePage> {
+     int counter = 0;
+     void increment() => setState(() => counter++);
+
+     @override
+     Widget build(BuildContext context) {
+     return Scaffold(
+     appBar: AppBar(title: Text(widget.title)),
+     body: Center(
+     child: Column(
+     mainAxisAlignment: MainAxisAlignment.center,
+     children: [
+     const Text('You clicked this many times:'),
+     Text('$counter', style: Theme.of(context).textTheme.headlineMedium),
+     ],
+     ),
+     ),
+     floatingActionButton: FloatingActionButton(
+     onPressed: increment,
+     child: const Icon(Icons.add),
+     ),
+     );
+     }
+     }
 
   </details>
   <details><summary>Setup Flutter</summary>
