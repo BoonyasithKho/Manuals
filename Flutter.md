@@ -23,7 +23,7 @@
 
   <details>
 
-  <summary><b>🏷️ Install Flutter SDK</b></summary>
+  <summary>     🏷️ Install Flutter SDK</summary>
 
 - Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
 - If you setup in Mac Silicon, you must to install Rosetta
@@ -55,7 +55,7 @@
 
 </details>
 
-<details><summary><b>🏷️ ตรวจสอบด้วย Flutter doctor**</b></summary>
+<details><summary>     🏷️ ตรวจสอบด้วย Flutter doctor**</summary>
 
 - ถ้ามีสถานะ [!] ให้แก้ทีละอันจนเป็น [✓] ตามคำแนะนำ
 
