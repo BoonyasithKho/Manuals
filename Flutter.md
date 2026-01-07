@@ -1,6 +1,6 @@
 # :wave: Welcome to Flutter Manual's "Introduction to Flutter"
 
-<details><summary>**Introduction to Flutter**</summary>
+<details><h1>Introduction to Flutter</h1>
 <hr>
   
 ## What is Flutter?
@@ -98,10 +98,12 @@
   );
   }
   }
+
   ```
   </details>
   <details><summary>Setup Flutter</summary>
   <hr>
+  ```
 
 ### 1. Install Flutter SDK
 
@@ -538,6 +540,7 @@
   ....
   ```
 - การรับค่าจากข้อมูลจาก TextFormField จะมีที่จะกำหนดหลักๆ อยู่ 3 - 4 จุด คือ
+
   1. กำหนดตัวแปรสำหรับ controller หรือเรียกว่าตัวควบคุม
   2. นำ controller ผูกกับฟอร์มฟิลด์ที่ต้องการ
 
@@ -654,7 +657,8 @@
 
   - ติดตั้ง form_field_validator
   - ตัวอย่างการเรียกใช้งาน
-    ```dart
+
+    ````dart
     // แบบเงื่อนไขเดียว
     TextFormField(
     autovalidateMode: AutovalidateMode.always,
@@ -674,6 +678,7 @@
         ```
 
     </details>
+    ````
 
 <details><summary>Map</summary>
 <hr>
