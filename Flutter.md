@@ -1,6 +1,6 @@
 # :wave: Welcome to Flutter Manual's "Introduction to Flutter"
 
-<details><summary>Introduction to Flutter</summary>
+<details>**<summary>Introduction to Flutter</summary>**
 <hr>
 
 <details><summary>📍 What is Flutter?</summary>
