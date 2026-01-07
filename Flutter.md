@@ -3,8 +3,8 @@
 <details><summary>Introduction to Flutter</summary>
 <hr>
 
-<summary>📍 What is Flutter?</summary>
-<details>
+  <details><summary>📍 What is Flutter?</summary>
+
 - **Flutter** คือ framework สำหรับพัฒนาแอปแบบ cross-platform (iOS, Android, Web, Desktop) มีการทำงานแบบ **“render UI ด้วย engine ของตัวเอง”** (ไม่ใช่แค่เอา widget ไปแปะ native UI ตรง ๆ) และในโหมด release จะ compile Dart เป็น native (AOT) เพื่อประสิทธิภาพที่ดีบนอุปกรณ์จริง
 - **จุดเด่น:**
   - Hot Reload ปรับ UI ได้เร็วมากระหว่างพัฒนา
