@@ -21,7 +21,7 @@
 
 <detail><summary>📍 Setup Flutter</summary>
 
-<details>- **Install Flutter SDK**
+<details><summary><b>- Install Flutter SDK</b></summary>
 
 - Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
 - If you setup in Mac Silicon, you must to install Rosetta
