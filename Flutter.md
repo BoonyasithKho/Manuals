@@ -19,6 +19,87 @@
 - IDE แนะนำ: VS Code หรือ Android Studio
 </details>
 
+<details><summary>Setup Flutter</summary>
+<hr>
+
+### 1. Install Flutter SDK
+
+- Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
+- If you setup in Mac Silicon, you must to install Rosetta
+
+  ```shell
+  sudo softwareupdate --install-rosetta --agree-to-license
+  ```
+
+- Extract the file in the desired location, for example:
+
+  ```shell
+  cd ~/Flutter
+  unzip ~/Downloads/flutter_macos_3.3.2-stable.zip
+  ```
+
+- Add the flutter tool to your path with 'pwd => path of flutter':
+
+  ```shell
+  vim .zshrc
+  Press 'I'
+     export PATH=/Users/username/Documents/Flutter/ENV/flutter/bin:$PATH
+  Press ESC
+  Type ':wq!'
+  ```
+
+  ```shell
+  export PATH="$PATH:/Users/username/Documents/Flutter/ENV/flutter/bin"
+  ```
+
+### 2. ตรวจสอบด้วย Flutter doctor
+
+- ถ้ามีสถานะ [!] ให้แก้ทีละอันจนเป็น [✓] ตามคำแนะนำ
+
+  ```shell
+  flutter doctor
+  ```
+
+### 3. Install Xcode (สำหรับ MacOS)
+
+- Get the Xcode at: https://developer.apple.com/xcode/.
+- Configure the Xcode by running the following from the command line:
+
+  ```shell
+  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+  sudo xcodebuild -runFirstLaunch
+  sudo xcodebuild -license
+  ```
+
+### 4. CocoaPods (จำเป็นสำหรับ iOS plugins)
+
+- Flutter แนะนำใช้ CocoaPods ในงาน iOS โดยเฉพาะโปรเจกต์ที่มี plugins
+- ติดตั้ง (วิธี gem แบบคลาสสิก)
+
+  ```shell
+  sudo gem install cocoapods
+  ```
+
+### 5) Install Android Studio (สำหรับ Android)
+
+- Download and install [Android Studio](https://developer.android.com/studio)
+- Set up the Android emulator follow command recommendation.
+- Agree to Android Licenses:
+  ```shell
+  flutter doctor --android-licenses
+  ```
+
+### 6) Install VS Code + Extensions
+
+- Extensions แนะนำ:
+  - Flutter
+  - Dart
+  - Flutter Widget Snippet
+  - Error lens
+  - GitHub Pull Requests and Issues
+
+</details>
+
 <details><summary>📍 Create Project</summary>
 
 - วิธี VS Code
@@ -121,87 +202,6 @@
 
 </details>
 <hr>
-</details>
-
-<details><summary>Setup Flutter</summary>
-<hr>
-
-### 1. Install Flutter SDK
-
-- Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
-- If you setup in Mac Silicon, you must to install Rosetta
-
-  ```shell
-  sudo softwareupdate --install-rosetta --agree-to-license
-  ```
-
-- Extract the file in the desired location, for example:
-
-  ```shell
-  cd ~/Flutter
-  unzip ~/Downloads/flutter_macos_3.3.2-stable.zip
-  ```
-
-- Add the flutter tool to your path with 'pwd => path of flutter':
-
-  ```shell
-  vim .zshrc
-  Press 'I'
-     export PATH=/Users/username/Documents/Flutter/ENV/flutter/bin:$PATH
-  Press ESC
-  Type ':wq!'
-  ```
-
-  ```shell
-  export PATH="$PATH:/Users/username/Documents/Flutter/ENV/flutter/bin"
-  ```
-
-### 2. ตรวจสอบด้วย Flutter doctor
-
-- ถ้ามีสถานะ [!] ให้แก้ทีละอันจนเป็น [✓] ตามคำแนะนำ
-
-  ```shell
-  flutter doctor
-  ```
-
-### 3. Install Xcode (สำหรับ MacOS)
-
-- Get the Xcode at: https://developer.apple.com/xcode/.
-- Configure the Xcode by running the following from the command line:
-
-  ```shell
-  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-  sudo xcodebuild -runFirstLaunch
-  sudo xcodebuild -license
-  ```
-
-### 4. CocoaPods (จำเป็นสำหรับ iOS plugins)
-
-- Flutter แนะนำใช้ CocoaPods ในงาน iOS โดยเฉพาะโปรเจกต์ที่มี plugins
-- ติดตั้ง (วิธี gem แบบคลาสสิก)
-
-  ```shell
-  sudo gem install cocoapods
-  ```
-
-### 5) Install Android Studio (สำหรับ Android)
-
-- Download and install [Android Studio](https://developer.android.com/studio)
-- Set up the Android emulator follow command recommendation.
-- Agree to Android Licenses:
-  ```shell
-  flutter doctor --android-licenses
-  ```
-
-### 6) Install VS Code + Extensions
-
-- Extensions แนะนำ:
-  - Flutter
-  - Dart
-  - Flutter Widget Snippet
-  - Error lens
-  - GitHub Pull Requests and Issues
-
 </details>
 
 <details><summary>Dart(101)</summary>
