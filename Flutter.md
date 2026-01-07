@@ -18,11 +18,11 @@
 
   - วิธี VS Code
 
-    1. Open VS Code > Invoke View > Command Palette
-    2. Type “flutter”, and select the **Flutter: New Project**
-    3. Select Application
-    4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-    5. Wait for project creation to complete and the main.dart file to appear
+    1.1 Open VS Code > Invoke View > Command Palette
+    1.2 Type “flutter”, and select the **Flutter: New Project**
+    1.3 Select Application
+    1.4 Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
+    1.5 Wait for project creation to complete and the main.dart file to appear
 
   - วิธี CLI
     ```bash
