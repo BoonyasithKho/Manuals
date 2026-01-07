@@ -21,6 +21,7 @@
 
 <details><summary>📍 Setup Flutter</summary>
 <br>
+<blockquote>
   <details><summary>🏷️ Install Flutter SDK</summary>
 
 - Get the Flutter SDK at: [https://docs.flutter.dev/get-started/install/macos](https://docs.flutter.dev/install)
@@ -108,7 +109,7 @@
     - Error lens
     - GitHub Pull Requests and Issues
   </details>
-
+</blockquote>
 </details>
 
 <details><summary>📍 Create Project</summary>
