@@ -41,27 +41,22 @@
 
 <details><summary>📍 Run the app</summary>
 
-1. เลือก device/simulator จากแถบล่างของ VS Code
-2. Invoke Run > Start Debugging
-3. Wait for the app to launch—progress is printed in the Debug Console view
-4. After the app build completes, you’ll see the starter app on your device
-5. Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
-6. Save and Hot Reload
+- เลือก device/simulator จากแถบล่างของ VS Code
+- Invoke Run > Start Debugging
+- Wait for the app to launch—progress is printed in the Debug Console view
+- After the app build completes, you’ll see the starter app on your device
+- Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
+- Save and Hot Reload
 </details>
 
 <details><summary>📍 Structure of Project</summary>
 
-📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
-
-📁 `test\` unit/widget tests
-
-📁 `android\` และ `ios\` ใช้สำหรับการเก็บโปรเจคของ Application แต่ละระบบ เมื่อทำการรันจะมีการเก็บลงตามระบบปฏิบัติการที่รัน ซึ่งสามารถทำการแก้ไขในแต่ละระบบปฏิบัติการ
-
-📁 `assets\` This folder contains any static assets, such as images or fonts, that are required by your app
-
-🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
-
-🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
+- 📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
+- 📁 `test\` unit/widget tests
+- 📁 `android\` และ `ios\` ใช้สำหรับการเก็บโปรเจคของ Application แต่ละระบบ เมื่อทำการรันจะมีการเก็บลงตามระบบปฏิบัติการที่รัน ซึ่งสามารถทำการแก้ไขในแต่ละระบบปฏิบัติการ
+- 📁 `assets\` This folder contains any static assets, such as images or fonts, that are required by your app
+- 🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
+- 🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
 </details>
 
