@@ -39,7 +39,7 @@
 
   </details>
 
-## 📍 Run the app
+<details><summary>📍 Run the app</summary>
 
 1. เลือก device/simulator จากแถบล่างของ VS Code
 2. Invoke Run > Start Debugging
@@ -47,8 +47,9 @@
 4. After the app build completes, you’ll see the starter app on your device
 5. Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
 6. Save and Hot Reload
+</details>
 
-## 📍 Structure of Project
+<details><summary>📍 Structure of Project</summary>
 
 📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
 
@@ -62,7 +63,9 @@
 
 🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
-## 📍 First Project with Flutter
+</details>
+
+<details><summary>📍 First Project with Flutter</summary>
 
 1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app.
 2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter.
@@ -120,6 +123,8 @@
     }
    }
 ```
+
+</details>
 
 </details>
 <details><summary>Setup Flutter</summary>
