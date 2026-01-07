@@ -37,6 +37,8 @@
     flutter run
   ```
 
+  </details>
+
 ## 📍 Run the app
 
 1. เลือก device/simulator จากแถบล่างของ VS Code
