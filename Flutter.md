@@ -10,112 +10,116 @@
   - Hot Reload ปรับ UI ได้เร็วมากระหว่างพัฒนา
   - โค้ดชุดเดียวรันได้หลายแพลตฟอร์ม
   - UI ทำได้ยืดหยุ่นและสวย (Material / Cupertino / Custom)
-- **Tools**
-  - [pub.dev](https://pub.dev/) : The official package repository for Dart and Flutter apps.
-  - [Icon](https://fonts.google.com/icons) : Material Symbols
-  - IDE แนะนำ: VS Code หรือ Android Studio
-- **Create Project**
 
-  - วิธี VS Code
+## 📍 Tools
 
-    1. Open VS Code > Invoke View > Command Palette
-    2. Type “flutter”, and select the **Flutter: New Project**
-    3. Select Application
-    4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-    5. Wait for project creation to complete and the main.dart file to appear
+- [pub.dev](https://pub.dev/) : The official package repository for Dart and Flutter apps.
+- [Icon](https://fonts.google.com/icons) : Material Symbols
+- IDE แนะนำ: VS Code หรือ Android Studio
 
-  - วิธี CLI
+## 📍 Create Project
 
-    ```bash
-      flutter create my_first_app
-      cd my_first_app
-      flutter run
-    ```
+- วิธี VS Code
 
-- **Run the app**
-  1. เลือก device/simulator จากแถบล่างของ VS Code
-  2. Invoke Run > Start Debugging
-  3. Wait for the app to launch—progress is printed in the Debug Console view
-  4. After the app build completes, you’ll see the starter app on your device
-  5. Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
-  6. Save and Hot Reload
-- **Structure of Project**
+  1. Open VS Code > Invoke View > Command Palette
+  2. Type “flutter”, and select the **Flutter: New Project**
+  3. Select Application
+  4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
+  5. Wait for project creation to complete and the main.dart file to appear
 
-  📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
+- วิธี CLI
 
-  📁 `test\` unit/widget tests
-
-  📁 `android\` และ `ios\` ใช้สำหรับการเก็บโปรเจคของ Application แต่ละระบบ เมื่อทำการรันจะมีการเก็บลงตามระบบปฏิบัติการที่รัน ซึ่งสามารถทำการแก้ไขในแต่ละระบบปฏิบัติการ
-
-  📁 `assets\` This folder contains any static assets, such as images or fonts, that are required by your app
-
-  🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
-
-  🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
-
-- **First Project with Flutter**
-
-  1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app.
-  2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter.
-  3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value.
-  4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
-
-  ```dart
-     import 'package:flutter/material.dart';
-
-     void main() => runApp(const MyApp());
-
-     class MyApp extends StatelessWidget {
-      const MyApp({super.key});
-
-      @override
-      Widget build(BuildContext context) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(primarySwatch: Colors.blue),
-          home: const MyHomePage(title: 'Home'),
-        );
-      }
-     }
-
-     class MyHomePage extends StatefulWidget {
-      const MyHomePage({super.key, required this.title});
-      final String title;
-
-      @override
-      State<MyHomePage> createState() => \_MyHomePageState();
-     }
-
-     class _MyHomePageState extends State<MyHomePage> {
-      int counter = 0;
-      void increment() => setState(() => counter++);
-
-      @override
-      Widget build(BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(title: Text(widget.title)),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('You clicked this many times:'),
-                Text('$counter', style: Theme.of(context).textTheme.headlineMedium),
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: increment,
-            child: const Icon(Icons.add),
-          ),
-        );
-      }
-     }
+  ```bash
+    flutter create my_first_app
+    cd my_first_app
+    flutter run
   ```
 
-  </details>
-  <details><summary>Setup Flutter</summary>
-  <hr>
-  ```
+## 📍 Run the app
+
+1. เลือก device/simulator จากแถบล่างของ VS Code
+2. Invoke Run > Start Debugging
+3. Wait for the app to launch—progress is printed in the Debug Console view
+4. After the app build completes, you’ll see the starter app on your device
+5. Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
+6. Save and Hot Reload
+
+## 📍 Structure of Project
+
+📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
+
+📁 `test\` unit/widget tests
+
+📁 `android\` และ `ios\` ใช้สำหรับการเก็บโปรเจคของ Application แต่ละระบบ เมื่อทำการรันจะมีการเก็บลงตามระบบปฏิบัติการที่รัน ซึ่งสามารถทำการแก้ไขในแต่ละระบบปฏิบัติการ
+
+📁 `assets\` This folder contains any static assets, such as images or fonts, that are required by your app
+
+🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
+
+🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
+
+## 📍 First Project with Flutter
+
+1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app.
+2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter.
+3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value.
+4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
+
+```dart
+   import 'package:flutter/material.dart';
+
+   void main() => runApp(const MyApp());
+
+   class MyApp extends StatelessWidget {
+    const MyApp({super.key});
+
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: const MyHomePage(title: 'Home'),
+      );
+    }
+   }
+
+   class MyHomePage extends StatefulWidget {
+    const MyHomePage({super.key, required this.title});
+    final String title;
+
+    @override
+    State<MyHomePage> createState() => \_MyHomePageState();
+   }
+
+   class _MyHomePageState extends State<MyHomePage> {
+    int counter = 0;
+    void increment() => setState(() => counter++);
+
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(title: Text(widget.title)),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('You clicked this many times:'),
+              Text('$counter', style: Theme.of(context).textTheme.headlineMedium),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: increment,
+          child: const Icon(Icons.add),
+        ),
+      );
+    }
+   }
+```
+
+</details>
+<details><summary>Setup Flutter</summary>
+<hr>
 
 ### 1. Install Flutter SDK
 
