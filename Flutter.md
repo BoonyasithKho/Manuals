@@ -53,13 +53,14 @@
 
   🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
-- **First Project with Flutter** 1
+- **First Project with Flutter**
 
   1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app.
   2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter.
   3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value.
   4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
 
+  ```dart
      import 'package:flutter/material.dart';
 
      void main() => runApp(const MyApp());
