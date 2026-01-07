@@ -76,25 +76,30 @@
 
   </details>
 
-- **CocoaPods (จำเป็นสำหรับ iOS plugins)**
+<details><summary>🏷️ CocoaPods (จำเป็นสำหรับ iOS plugins)</summary>
 
-  - Flutter แนะนำใช้ CocoaPods ในงาน iOS โดยเฉพาะโปรเจกต์ที่มี plugins
-  - ติดตั้ง (วิธี gem แบบคลาสสิก)
+- Flutter แนะนำใช้ CocoaPods ในงาน iOS โดยเฉพาะโปรเจกต์ที่มี plugins
+- ติดตั้ง (วิธี gem แบบคลาสสิก)
 
-    ```shell
-    sudo gem install cocoapods
-    ```
+  ```shell
+  sudo gem install cocoapods
+  ```
 
-- **Install Android Studio (สำหรับ Android)**
+  </details>
 
-  - Download and install [Android Studio](https://developer.android.com/studio)
-  - Set up the Android emulator follow command recommendation.
-  - Agree to Android Licenses:
-    ```shell
-    flutter doctor --android-licenses
-    ```
+<details><summary>🏷️ Install Android Studio (สำหรับ Android)</summary>
 
-- **Install VS Code + Extensions**
+- Download and install [Android Studio](https://developer.android.com/studio)
+- Set up the Android emulator follow command recommendation.
+- Agree to Android Licenses:
+
+  ```shell
+  flutter doctor --android-licenses
+  ```
+
+  </details>
+
+<details><summary>🏷️ Install VS Code + Extensions</summary>
   - Download and install [VSCode](https://code.visualstudio.com/Download)
   - Extensions แนะนำ:
     - Flutter
@@ -102,6 +107,7 @@
     - Flutter Widget Snippet
     - Error lens
     - GitHub Pull Requests and Issues
+  </details>
 
 </details>
 
