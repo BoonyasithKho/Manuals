@@ -3,7 +3,7 @@
 <details><summary>Introduction to Flutter</summary>
 <hr>
 
-  <details><summary>📍 What is Flutter?</summary>
+<details><summary>📍 What is Flutter?</summary>
 
 - **Flutter** คือ framework สำหรับพัฒนาแอปแบบ cross-platform (iOS, Android, Web, Desktop) มีการทำงานแบบ **“render UI ด้วย engine ของตัวเอง”** (ไม่ใช่แค่เอา widget ไปแปะ native UI ตรง ๆ) และในโหมด release จะ compile Dart เป็น native (AOT) เพื่อประสิทธิภาพที่ดีบนอุปกรณ์จริง
 - **จุดเด่น:**
@@ -12,14 +12,14 @@
   - UI ทำได้ยืดหยุ่นและสวย (Material / Cupertino / Custom)
   </details>
 
-  <details><summary>📍 Tools</summary>
+<details><summary>📍 Tools</summary>
 
 - [pub.dev](https://pub.dev/) : The official package repository for Dart and Flutter apps.
 - [Icon](https://fonts.google.com/icons) : Material Symbols
 - IDE แนะนำ: VS Code หรือ Android Studio
 </details>
 
-  <details><summary>📍 Create Project</summary>
+<details><summary>📍 Create Project</summary>
 
 - วิธี VS Code
 
@@ -39,7 +39,7 @@
 
   </details>
 
-  <details><summary>📍 Run the app</summary>
+<details><summary>📍 Run the app</summary>
 
 1. เลือก device/simulator จากแถบล่างของ VS Code
 2. Invoke Run > Start Debugging
@@ -49,7 +49,7 @@
 6. Save and Hot Reload
 </details>
 
-  <details><summary>📍 Structure of Project</summary>
+<details><summary>📍 Structure of Project</summary>
 
 📁 `lib\` เก็บไฟล์ที่แยกหน้าแอพต่าง ๆ ที่นามสกุล .dart ซึ่งการทำงานบนหน้าจอต่าง ๆ จะอยู่ในโฟลเดอร์นี้
 
@@ -63,9 +63,9 @@
 
 🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
-  </details>
+</details>
 
-  <details><summary>📍 First Project with Flutter</summary>
+<details><summary>📍 First Project with Flutter</summary>
 
 1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app.
 2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter.
@@ -73,11 +73,11 @@
 4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
 
 ```dart
-  import 'package:flutter/material.dart';
+   import 'package:flutter/material.dart';
 
-  void main() => runApp(const MyApp());
+   void main() => runApp(const MyApp());
 
-  class MyApp extends StatelessWidget {
+   class MyApp extends StatelessWidget {
     const MyApp({super.key});
 
     @override
@@ -88,17 +88,17 @@
         home: const MyHomePage(title: 'Home'),
       );
     }
-  }
+   }
 
-  class MyHomePage extends StatefulWidget {
+   class MyHomePage extends StatefulWidget {
     const MyHomePage({super.key, required this.title});
     final String title;
 
     @override
     State<MyHomePage> createState() => \_MyHomePageState();
-  }
+   }
 
-  class _MyHomePageState extends State<MyHomePage> {
+   class _MyHomePageState extends State<MyHomePage> {
     int counter = 0;
     void increment() => setState(() => counter++);
 
@@ -121,10 +121,10 @@
         ),
       );
     }
-  }
+   }
 ```
 
-  </details>
+</details>
 
 </details>
 <details><summary>Setup Flutter</summary>
