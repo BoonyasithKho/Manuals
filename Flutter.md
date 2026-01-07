@@ -2,25 +2,26 @@
 
 <details><summary>Introduction to Flutter</summary>
 <hr>
-  
-## What is Flutter?
- - **Flutter** คือ framework สำหรับพัฒนาแอปแบบ cross-platform (iOS, Android, Web, Desktop)
- - **Flutter** ทำงานแบบ **“render UI ด้วย engine ของตัวเอง”** (ไม่ใช่แค่เอา widget ไปแปะ native UI ตรง ๆ) และในโหมด release จะ compile Dart เป็น native (AOT) เพื่อประสิทธิภาพที่ดีบนอุปกรณ์จริง
- - **จุดเด่น:**
-   - Hot Reload ปรับ UI ได้เร็วมากระหว่างพัฒนา
-   - โค้ดชุดเดียวรันได้หลายแพลตฟอร์ม
-   - UI ทำได้ยืดหยุ่นและสวย (Material / Cupertino / Custom)
- - **Tools**
-   - [pub.dev](https://pub.dev/) : The official package repository for Dart and Flutter apps.
-   - [Icon](https://fonts.google.com/icons) : Material Symbols
-   - IDE แนะนำ: VS Code หรือ Android Studio
- - **Create Project**
-   - วิธี VS Code
-    1. Open VS Code > Invoke View > Command Palette
-    2. Type “flutter”, and select the **Flutter: New Project**
-    3. Select Application
-    4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-    5. Wait for project creation to complete and the main.dart file to appear
+
+## 📍 What is Flutter?
+
+- **Flutter** คือ framework สำหรับพัฒนาแอปแบบ cross-platform (iOS, Android, Web, Desktop) มีการทำงานแบบ **“render UI ด้วย engine ของตัวเอง”** (ไม่ใช่แค่เอา widget ไปแปะ native UI ตรง ๆ) และในโหมด release จะ compile Dart เป็น native (AOT) เพื่อประสิทธิภาพที่ดีบนอุปกรณ์จริง
+- **จุดเด่น:**
+  - Hot Reload ปรับ UI ได้เร็วมากระหว่างพัฒนา
+  - โค้ดชุดเดียวรันได้หลายแพลตฟอร์ม
+  - UI ทำได้ยืดหยุ่นและสวย (Material / Cupertino / Custom)
+- **Tools**
+  - [pub.dev](https://pub.dev/) : The official package repository for Dart and Flutter apps.
+  - [Icon](https://fonts.google.com/icons) : Material Symbols
+  - IDE แนะนำ: VS Code หรือ Android Studio
+- **Create Project**
+  - วิธี VS Code
+
+1. Open VS Code > Invoke View > Command Palette
+2. Type “flutter”, and select the **Flutter: New Project**
+3. Select Application
+4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
+5. Wait for project creation to complete and the main.dart file to appear
    - วิธี CLI
      ```bash
      flutter create my_first_app
