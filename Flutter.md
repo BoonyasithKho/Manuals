@@ -15,19 +15,21 @@
   - [Icon](https://fonts.google.com/icons) : Material Symbols
   - IDE แนะนำ: VS Code หรือ Android Studio
 - **Create Project**
+
   - วิธี VS Code
 
-1. Open VS Code > Invoke View > Command Palette
-2. Type “flutter”, and select the **Flutter: New Project**
-3. Select Application
-4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-5. Wait for project creation to complete and the main.dart file to appear
-   - วิธี CLI
-     ```bash
-     flutter create my_first_app
-     cd my_first_app
-     flutter run
-     ```
+    1. Open VS Code > Invoke View > Command Palette
+    2. Type “flutter”, and select the **Flutter: New Project**
+    3. Select Application
+    4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
+    5. Wait for project creation to complete and the main.dart file to appear
+
+  - วิธี CLI
+    ```bash
+    flutter create my_first_app
+    cd my_first_app
+    flutter run
+    ```
 
 - **Run the app**
   1. เลือก device/simulator จากแถบล่างของ VS Code
