@@ -1,10 +1,10 @@
 # :wave: Welcome to Flutter Manual's "Introduction to Flutter"
 
-<details><summary><h1>Introduction to Flutter</h1></summary>
+<details><summary><h2>Introduction to Flutter</h2></summary>
 <hr>
   
 ## What is Flutter?
- - **Flutter** คือ framework สำหรับพัฒนาแอปแบบ cross-platform (iOS, Android, Web, Desktop) โดยใช้ภาษา **Dart**
+ - **Flutter** คือ framework สำหรับพัฒนาแอปแบบ cross-platform (iOS, Android, Web, Desktop)
  - **Flutter** ทำงานแบบ **“render UI ด้วย engine ของตัวเอง”** (ไม่ใช่แค่เอา widget ไปแปะ native UI ตรง ๆ) และในโหมด release จะ compile Dart เป็น native (AOT) เพื่อประสิทธิภาพที่ดีบนอุปกรณ์จริง
  - **จุดเด่น:**
    - Hot Reload ปรับ UI ได้เร็วมากระหว่างพัฒนา
@@ -16,13 +16,12 @@
    - IDE แนะนำ: VS Code หรือ Android Studio
  - **Create Project**
    - วิธี VS Code
-	 1. Open VS Code > Invoke View > Command Palette
-	 2. Type “flutter”, and select the **Flutter: New Project**
-	 3. Select Application
-	 4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-	 5. Wait for project creation to complete and the main.dart file to appear
+    1. Open VS Code > Invoke View > Command Palette
+    2. Type “flutter”, and select the **Flutter: New Project**
+    3. Select Application
+    4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
+    5. Wait for project creation to complete and the main.dart file to appear
    - วิธี CLI
-
      ```bash
      flutter create my_first_app
      cd my_first_app
