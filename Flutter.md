@@ -55,8 +55,6 @@
 
 - **First Project with Flutter** 1. We've created Demo project with Material App. Material App's built which has Statefulwidget class. It has scafold widget is home of material app. 2. In MyHomePage (Stateful widget) has incrementCouter function for set value of counter. 3. In Scaffold Widget has AppBar and Body. Body has center widget with column of Text and counter value. 4. In body, FloatactionButton with onpressed 'incrementCouter' and Icon widget to child.
 
-      ```
-
       import 'package:flutter/material.dart';
 
       void main() => runApp(const MyApp());
@@ -106,8 +104,6 @@
           );
         }
       }
-
-      ```
 
   </details>
   <details><summary>Setup Flutter</summary>
