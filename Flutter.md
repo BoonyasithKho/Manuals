@@ -411,7 +411,7 @@
 <details><summary>API & FutureBuilder</summary>
   <hr>
 
-## ⤵️ API คืออะไร
+<details><summary>⤵️ API คืออะไร</summary>
 
 - วิธีเรียกใช้งานโปรแกรม เป็นรูปแบบโปรแกรมกับโปรแกรม เพื่อใช้สำหรับการแลกเปลี่ยนข้อมูลระหว่างกัน ผ่านทาง Internet โดย
   โปรแกรมต้นทาง จะเรียกว่า Server คอยเปิดและให้บริการข้อมูล
@@ -496,8 +496,9 @@
   ```
 
 - More information for [Parse JSON in Dart/Flutter](https://codewithandrea.com/articles/parse-json-dart/)
+</details>
 
-## ⤵️ FutureBuilder
+<details><summary>⤵️ FutureBuilder</summary>
 
 - การทำงานของ Flutter มี 2 แบบ คือ
   - การทำงานแบบ Synchronous คือ การทำงานแบบตามลำดับ ต้องให้งานก่อนหน้าเสร็จก่อนถึงจะทำงานในขั้นตอนต่อไป
@@ -538,8 +539,9 @@
     },
   )
   ```
-
-</details>
+  </details>
+  <hr>
+  </details>
 
 <details><summary>Form and Validate</summary>
 <hr>
