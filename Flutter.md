@@ -400,7 +400,8 @@
   </p>
 
   - `systemNavigator.pop()` : ปิดแอพเพื่อออกไปหน้า Menu เครื่อง
-  <details>
+
+<details>
 
 <details><summary>API & FutureBuilder</summary>
   <hr>
