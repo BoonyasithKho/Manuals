@@ -1409,8 +1409,158 @@ body: GoogleMap(
 - สร้าง Collection สำหรับใช้ในการเก็บข้อมูล ด้วยคำสั่ง CollectionReference \_nameCollection = FirebaseFirestore.instance.collection(’Collection_Name’)
 - ในปุ่มสำหรับการอัพโหลดข้อมูลให้ทำการเช็คการทำงานด้วย async และ await
 </details>
-<details><summary>Notice using Firebase?</summary>
 
+<details><summary>Notice using Firebase?</summary>
+	
+- Create Flutter Project
+- Create Firebase Project
+- Setting Firebase Project for Your apps using Flutter
+	- In terminal VSCode, type `firebase login`, `dart pub global activate flutterfire_cli`, `flutterfire configure`
+ 	- ติดตั้ง Package `flutter pub add firebase_core` และ `flutter pub add firebase_messaging`
+- Check file `firebase_options.dart`
+- Add new file `firebase_msg.dart`
+
+```dart
+import 'dart:async';
+import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+class FirebaseMsg {
+  final FirebaseMessaging _msg = FirebaseMessaging.instance;
+
+  Future<String> initFCM() async {
+    // 1) ขอ permission
+    final settings = await _msg.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+    print('Notification permission: ${settings.authorizationStatus}');
+
+    // 2) iOS: ตั้งให้โชว์ noti ตอน foreground (อย่างน้อย banner)
+    if (Platform.isIOS) {
+      await _msg.setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
+
+    // 3) ดึง token แบบ retry + กันแครช
+    final token = await _getFcmTokenWithRetry();
+    print('FCM TOKEN => $token');
+
+    // 4) ฟัง token เปลี่ยน (ทำจริงควรส่งขึ้น server)
+    _msg.onTokenRefresh.listen((newToken) {
+      print('FCM TOKEN REFRESH => $newToken');
+    });
+
+    // 5) Foreground message
+    FirebaseMessaging.onMessage.listen((RemoteMessage msg) {
+      print(
+        'onMessage title=${msg.notification?.title} body=${msg.notification?.body}',
+      );
+      print('onMessage data=${msg.data}');
+    });
+
+    // 6) กดแจ้งเตือนแล้วเปิดแอป
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage msg) {
+      print('onMessageOpenedApp data=${msg.data}');
+    });
+
+    // 7) เปิดจากปิดสนิท (terminated)
+    final initial = await _msg.getInitialMessage();
+    if (initial != null) {
+      print('getInitialMessage data=${initial.data}');
+    }
+    print(token);
+    return token!;
+  }
+
+  Future<String?> _getFcmTokenWithRetry() async {
+    String? token;
+
+    // iOS: ลองอ่าน APNs token ระหว่างรอ (อาจเป็น null ช่วงแรก)
+    for (int i = 0; i < 20; i++) {
+      try {
+        // บางเครื่อง APNs token มาช้ากว่า 1-10 วิ
+        final apns = Platform.isIOS ? await _msg.getAPNSToken() : null;
+        if (Platform.isIOS) {
+          print('APNs token try#$i => $apns');
+        }
+
+        token = await _msg.getToken(); // ✅ ต้อง await
+        if (token != null && token.isNotEmpty) return token;
+      } catch (e) {
+        // ✅ กัน apns-token-not-set ไม่ให้แครช
+        print('getToken error try#$i => $e');
+      }
+      await Future.delayed(const Duration(seconds: 1));
+    }
+
+    return token; // อาจยัง null ถ้า iOS config ยังไม่ครบ
+  }
+}
+```
+- Edit file `main.dart`
+```dart
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'firebase_options.dart';
+import 'firebase_msg.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // handle background data here
+  print('BG message data=${message.data}');
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // ✅ ตั้ง background handler ก่อน runApp
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
+  // ✅ init FCM (ไม่แครชแล้ว)
+  String ms = await FirebaseMsg().initFCM();
+
+  runApp(MyApp(ms: ms));
+}
+
+class MyApp extends StatelessWidget {
+  final String ms;
+  const MyApp({super.key, required this.ms});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text('FCM Ready'), Text(ms)],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+```
+- For iOS, edit `Podfile` for update # platform :ios, '13.0' > '15.0'.
+	- It can already run but not show Token ID. You must test app in real phone to test.
+	- open project in Xcode
+	- Add Push Notifications, in Runner > Target Runner > signing & capabilities > + Capability > Select Push Notifications > กด Push notification Console > Login to https://icloud.developer.apple.com/ > Enable Push Notifications
+ 	- Add Background Mode, in Runner > Target Runner > signing & capabilities > + Capability > Select Background Modes > กด Remote notifications
+	- In firebase, Setting Project > Cloud Messaging > Add APNs Authentication Key from `https://developer.apple.com/account` > Certificates, IDs & Profiles > Keys > Add new Keys > Insert name and select Apple Push Notifications service (APNs) > Configure > Environment > Sandbox & Production > Save > Continue > Register > Select Key ID > Download file.p8 >  Copy Key ID and Team ID (อยู่ในหน้า Membership หรือมุมบน/รายละเอียดทีม)
+	- Firebase Console → Project settings (รูปเฟือง) → Cloud Messaging → Upload .p8 in APNs Authentication Key > Insert Key ID and Team ID
+	- In Xcode > Runner > Targets Runner > Build Settings > Signing > Code Signing Entitlements > change Debug, Profile, Release to `Runner/RunnerProfile.entitlements`
+	- Build and Run again.
 
 </details>
 
