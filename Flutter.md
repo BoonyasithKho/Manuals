@@ -715,8 +715,9 @@
             RangeValidator(min: 2000, max: 3000, errorText: 'Please enter a number between 2000 and 3000'),
          ]),
         ```
+    ````
 
-    </details>
+</details>
     ````
 
 <details><summary>Map</summary>
