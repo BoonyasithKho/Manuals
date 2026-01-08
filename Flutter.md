@@ -257,19 +257,21 @@
 <details><summary>Widgets and Layouts</summary>
 <hr>
 
-## ▶️ Widget
+<details><summary>▶️ Widget</summary>
 
 - ทุกอย่างใน Flutter คือ Widget เป็นส่วนที่ถูกใช้สร้างเป็นหน้าตาของ App หรือ User Interface (UI)
 - แต่ละ widget จะถูกวางซ้อนอยู่ภายใน Parent widget และได้รับการส่งต่อสืบทอดคุณสมบัติ (Properties) ต่างๆ จาก Parent อีกที
 - `MaterialApp` เป็น root widget หรือ Widget หลัก ที่ทำหน้าที่กำหนดส่วนต่าง ๆ ของแอป
 - Widget แต่ละตัวจะมีส่วนที่เรียกว่า Properties สำหรับกำหนดคุณสมบัติ
+</details>
 
-## ▶️ State Widget
+<details><summary>▶️ State Widget</summary>
 
 - Stateless Widget เป็น Widget ที่ไม่มีการเปลี่ยนแปลงตัวเอง การแสดงผลจะมีลักษณะคงที่ไม่เปลี่ยนแปลง
 - Stateful Widget เป็น Widget ที่มีการเปลี่ยนแปลงของ state โดยสามารถใช้คำสั่ง setState() เพื่อกำหนดการเปลี่ยนแปลง
+</details>
 
-## ▶️ Layouts
+<details><summary>▶️ Layouts</summary>
 
 - `Row` / `Column` สำหรับการจัด Layout ใช้บ่อยที่สุด โดย Row Widget ใช้ในการแสดงผลในแนวนอน ส่วน Column Widget ใช้ในการแสดงผลในแนวตั้ง
 - `Wrap` สำหรับการจัด Layout เมื่อมีการแสดงผลที่เกินขอบเขตการแสดงผลของหน้าจอ โดยจะทำการจัดเรียง Widget ให้มีจำนวนข้อมูลที่พอดีกับขอบเขตหน้าจอ คล้ายกับการทำ Row และ Column รวมกัน
@@ -368,8 +370,9 @@
     <img src="https://i.imgur.com/qNrcSfY.jpg"> 
   </p>
   - Ref: https://www.ninenik.com/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99_WebView_%E0%B9%81%E0%B8%AA%E0%B8%94%E0%B8%87%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C_%E0%B9%83%E0%B8%99_Flutter-1043.html
+  </details>
 
-## ▶️ Scaffold
+<details><summary>▶️ Scaffold</summary>
 
 - โครงหน้าสำเร็จรูป ประกอบด้วย
   - `AppBar` : A horizontal bar typically shown at the top of an app using the appBar property
@@ -377,6 +380,8 @@
   - `FloatingActionButton` : ปุ่มที่มีลักษณะการแสดงผลแบบลอย ๆ ในมุมล่างขวามือ การใช้ปุ่มสามารถใส่ icon ได้
   - `BottomNavigationBar` : A horizontal array of buttons typically shown along the bottom of the app using the bottomNavigationBar property
 
+</details>
+<hr>
 </details>
   
 <details><summary>Navigation</summary>
