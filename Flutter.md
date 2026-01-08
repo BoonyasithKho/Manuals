@@ -613,12 +613,12 @@
   3. อ้างอิงค่า และใช้งานผ่าน controller
   4. ยกเลิกการใช้งาน
   `dart
-     @override
-     void dispose() {
-       _text1.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
-       super.dispose();
-     }
-     `
+   @override
+   void dispose() {
+     _text1.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
+     super.dispose();
+   }
+   `
   </details>
 
 <details><summary>⏭️ Validate</summary>
@@ -741,7 +741,7 @@
 <details><summary>Map</summary>
 <hr>
 
-## 🗺️ Google Map
+<details><summary>🗺️ Google Map</summary>
 
 - การติดตั้ง Google Maps for Flutter เบื้องต้น
   1. ขอ API Key จากลิงค์ https://cloud.google.com/maps-platform/
@@ -816,7 +816,7 @@
       Completer<GoogleMapController> _controller = Completer();
     ```
   - การใช้งาน GoogleMap จะต้องทำการ initialCameraPosition เสมอ เพื่อกำหนดพิกัดจุดเริ่มต้นสถานที่ให้ GoogleMap ทำการแสดงผล
-    ```dart
+  `dart
     body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: LatLng(13.757429, 100.502465), //กำหนดพิกัดเริ่มต้นบนแผนที่
@@ -826,9 +826,10 @@
           _controller.complete(controller);
         },
       ),
-    ```
+    `
+  </details>
 
-## 🗺️ Flutter Map
+<details><summary>🗺️ Flutter Map</summary>
 
 - Mapping package for Flutter, based off of 'leaflet.js'. Simple and easy to learn, yet completely customizable and configurable, it's the best choice for mapping in your Flutter app.
 - Demonstration
@@ -873,8 +874,9 @@
   ```
 - Get data from API
 - More data [Flutter Map Document](https://docs.fleaflet.dev/)
+</details>
 
-## 🗺️ Sphere Map
+<details><summary>🗺️ Sphere Map</summary>
 
 การเริ่มต้น sphere map flutter
 
@@ -917,7 +919,8 @@
     ]);
   ```
 - More data [GISTDA sphere Map API](https://sphere.gistda.or.th/docs/)
-
+</details>
+<hr>
 </details>
 
 <details><summary>Datetime</summary>
