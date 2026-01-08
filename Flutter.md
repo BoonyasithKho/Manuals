@@ -377,7 +377,9 @@
   - `FloatingActionButton` : ปุ่มที่มีลักษณะการแสดงผลแบบลอย ๆ ในมุมล่างขวามือ การใช้ปุ่มสามารถใส่ icon ได้
   - `BottomNavigationBar` : A horizontal array of buttons typically shown along the bottom of the app using the bottomNavigationBar property
 
-## ▶️ Navigation
+</details>
+  
+<details><summary>Navigation</summary>
 
 - กลุ่มของ widget หรือ class ที่ใช้ร่วมกับ route ในการจัดการ widget ย่อย
 - มีการจัดวางโครงสร้างแบบ stack ซึ่งเป็นการซ้อนทับตามลำดับจากล่างขึ้นบน โดยแผ่่นที่นำมาเรียงต่อกันคือ ส่วนของ Widget ย่อย แผ่นที่แสดงผลจะถูกแสดงซ้อนทับหน้าอื่น ๆ ไว้
@@ -398,11 +400,10 @@
   </p>
 
   - `systemNavigator.pop()` : ปิดแอพเพื่อออกไปหน้า Menu เครื่อง
+  <details>
 
-</details>
-  
 <details><summary>API & FutureBuilder</summary>
-<hr>
+  <hr>
 
 ## ⤵️ API คืออะไร
 
