@@ -1444,7 +1444,7 @@ Radio(
 
 <details><summary>🔘 RadioListTile</summary>
 
-RadioListTile gives us more control over the normal one. It has additional ‘title‘ and ‘subtitle‘ property and a ‘secondary‘ widget. Here I am setting the ‘secondary‘ widget to an ElevatedButton for now.
+- RadioListTile gives us more control over the normal one. It has additional ‘title‘ and ‘subtitle‘ property and a ‘secondary‘ widget. Here I am setting the ‘secondary‘ widget to an ElevatedButton for now.
 
 ```dart
 RadioListTile(
@@ -1719,40 +1719,41 @@ RadioListTile(
       // initState();
     });
 
-}
+ }
 
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(
-title: Text('pull to refresh'),
-),
-body: RefreshIndicator(
-onRefresh: refresh,
-child: Container(
-child: Column(
-children: [
-Text('$now'),
-Container(
-height: 200,
-child: ListView.builder(
-itemCount: items.length,
-itemBuilder: (context, index) {
-return ListTile(
-title: Text(items[index]),
-);
-},
-),
-),
-],
-),
-),
-),
-);
-}
+ @override
+ Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('pull to refresh'),
+    ),
+    body: RefreshIndicator(
+      onRefresh: refresh,
+        child: Container(
+          child: Column(
+            children: [
+              Text('$now'),
+              Container(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(items[index]),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
 ```
 
+<hr>
 </details>
 
 <details><summary>Multiple Language Application</summary>
@@ -1800,9 +1801,7 @@ title: Text(items[index]),
     }
     ```
 
-    ```
     Note: app.changeLang จะใช้กับปุ่มเปลี่ยนภาษา, counter ตั้งใจทำไว้เพื่อรองรับ Plural ในภาษาอังกฤษ
-    ```
 
 5.  ตั้งค่า easy_localization ลงในแอป
     ใน main.dart เพิ่ม Widget EasyLocalization มาก่อน Widget MyApp โดยเจ้า EasyLocalization จะเป็นตัวหลักในการตั้งค่า Locale ต่างๆ
@@ -1868,9 +1867,7 @@ title: Text(items[index]),
     ...
     ```
 
-    ```
     Note: ฟังก์ชั่น Localization ถูกสร้างที่ Widget MaterialApp ถ้าอยากจะเรียกใช้การแปลภาษาที่ MaterialApp ต้องซ้อนผ่าน Widget Builder ก่อน
-    ```
 
     ต่อด้วย
 
@@ -1902,72 +1899,43 @@ title: Text(items[index]),
     ```
 
 6.  เขียนส่วนตั้งค่าเปลี่ยนภาษา
-    `dart
-...
-return Scaffold(
-  appBar: AppBar(
-    title: Text(widget.title),
-    actions: <Widget>[
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: TextButton(
-          child: Text(
-            tr('app.changeLang'),
-            style: TextStyle(color: Colors.white),
-          ),
-          onPressed: () => setState(() {
-            if (context.locale.languageCode == 'en') {
-              context.setLocale(Locale('th'));
-            } else {
-              context.setLocale(Locale('en'));
-            }
-          }),
-        ),
-      )
-    ],
-  ),
-...
-`
 
-                                                                                                                                                        ```
-                                                                                                                                                        Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
-                                                                                                                                                        ```
+    ```dart
+    ...
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+            actions: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: TextButton(
+                child: Text(
+                  tr('app.changeLang'),
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () => setState(() {
+              if (context.locale.languageCode == 'en') {
+                context.setLocale(Locale('th'));
+              } else {
+                context.setLocale(Locale('en'));
+              }
+              }),
+            ),
+          )
+        ],
+      ),
+    ),
+    ...
+    ```
 
-                                                                                                                                                    Bonus
-                                                                                                                                                    เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
-
-                                                                                                                                                    ```dart
-                                                                                                                                                     ...
-                                                                                                                                                     child: GestureDetector(
-                                                                                                                                                       child: Flag.fromCode(
-                                                                                                                                                         context.locale.languageCode == 'en'
-                                                                                                                                                           ? FlagsCode.TH
-                                                                                                                                                           : FlagsCode.GB, // Union Jack
-                                                                                                                                                         width: 30,
-                                                                                                                                                       ),
-                                                                                                                                                       onTap: () => setState(() {
-                                                                                                                                                         if (context.locale.languageCode == 'en') {
-                                                                                                                                                           context.setLocale(
-                                                                                                                                                             Locale('th'),
-                                                                                                                                                           );
-                                                                                                                                                         } else {
-                                                                                                                                                           context.setLocale(
-                                                                                                                                                             Locale('en'),
-                                                                                                                                                           );
-                                                                                                                                                         }
-                                                                                                                                                       }),
-                                                                                                                                                     ),
-                                                                                                                                                     ...
-                                                                                                                                                    ```
-
-````
-
+<hr>
 </details>
 
 <details><summary>Call Another Application</summary>
 <hr>
 
 - Open another app from your app with package: external_app_launcher
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
@@ -2028,7 +1996,7 @@ appStoreLink: 'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
 }
 }
 
-````
+```
 
 </details>
 
