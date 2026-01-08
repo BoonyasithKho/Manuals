@@ -956,7 +956,9 @@ body: GoogleMap(
        ),
    ```
 
-   </details>
+   <hr>
+
+  </details>
 
 <details><summary>Change Application Icon</summary>
 <hr>
@@ -964,6 +966,7 @@ body: GoogleMap(
 1. Call Package `flutter_launcher_icons` and install package
 2. Create a folder called asset in the root directory. Inside the asset folder create one more folder called icons and place your launcher icon inside. `Hint: It’s recommended to use a higher resolution image, for example, the image of 1024*1024.`
 3. Add flutter_icons inside the pubspec.yaml to reference the new launcher icon. `Note: foreground icon is smaller than image size with color background`
+
    ```yaml
    flutter_icons:
      android: true
@@ -973,15 +976,15 @@ body: GoogleMap(
      adaptive_icon_foreground: "assets/icons/bar-chart_fore.png"
    ```
 
-````
-
 4. In terminal, use `flutter pub run flutter_launcher_icons:main` for run the app and verify the new launcher icon updated in the launcher app for both Android and iOS.
 
+<hr>
 </details>
 
 <details><summary>Chart</summary><blockquote>
+<hr>
 
-## Syncfusion_flutter_charts
+<details><summary>Syncfusion_flutter_charts</summary>
 
 1. Get package `syncfusion_flutter_charts` and install
 2. Add SfCartesianChart or other type to code
@@ -1029,8 +1032,9 @@ body: GoogleMap(
    ```dart
    tooltipBehavior: _tooltipBehavior,
    ```
+   </details>
 
-## Charts_flutter
+<details><summary>Charts_flutter</summary>
 
 1. Get package `charts_flutter` and install [ref.](https://google.github.io/charts/flutter/gallery.html)
 2. Create class ChartData for model of data
@@ -1212,6 +1216,8 @@ body: GoogleMap(
       }
     }
     `
+</details>
+<hr>
 </details>
 
 <details><summary>Database</summary>
@@ -1669,8 +1675,9 @@ RadioListTile(
 <details><summary>Pull to update</summary>
 <hr>
 
-1) สร้าง Function สำหรับ Fetchdata โดยเป็นการ SetState ให้กับตัวแปรหรือข้อมูลที่ใช้ในส่วนการอัพเดท
-2) ใช้ RefreshIndicator ครอบส่วนที่ต้องการอัพเดท แล้วใช้ event ``onRefresh`` เรียกฟังก์ชัน fetchData()
+1. สร้าง Function สำหรับ Fetchdata โดยเป็นการ SetState ให้กับตัวแปรหรือข้อมูลที่ใช้ในส่วนการอัพเดท
+2. ใช้ RefreshIndicator ครอบส่วนที่ต้องการอัพเดท แล้วใช้ event `onRefresh` เรียกฟังก์ชัน fetchData()
+
 ```dart
  Future refresh() async {
     setState(() {
@@ -1712,7 +1719,7 @@ title: Text(items[index]),
 );
 }
 
-````
+```
 
 </details>
 
@@ -1890,36 +1897,36 @@ return Scaffold(
 ...
 `
 
-                    ```
-                    Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
-                    ```
+                                        ```
+                                        Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
+                                        ```
 
-                Bonus
-                เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
+                                    Bonus
+                                    เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
 
-                ```dart
-                 ...
-                 child: GestureDetector(
-                   child: Flag.fromCode(
-                     context.locale.languageCode == 'en'
-                       ? FlagsCode.TH
-                       : FlagsCode.GB, // Union Jack
-                     width: 30,
-                   ),
-                   onTap: () => setState(() {
-                     if (context.locale.languageCode == 'en') {
-                       context.setLocale(
-                         Locale('th'),
-                       );
-                     } else {
-                       context.setLocale(
-                         Locale('en'),
-                       );
-                     }
-                   }),
-                 ),
-                 ...
-                ```
+                                    ```dart
+                                     ...
+                                     child: GestureDetector(
+                                       child: Flag.fromCode(
+                                         context.locale.languageCode == 'en'
+                                           ? FlagsCode.TH
+                                           : FlagsCode.GB, // Union Jack
+                                         width: 30,
+                                       ),
+                                       onTap: () => setState(() {
+                                         if (context.locale.languageCode == 'en') {
+                                           context.setLocale(
+                                             Locale('th'),
+                                           );
+                                         } else {
+                                           context.setLocale(
+                                             Locale('en'),
+                                           );
+                                         }
+                                       }),
+                                     ),
+                                     ...
+                                    ```
 
 ````
 
