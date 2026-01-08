@@ -1561,7 +1561,7 @@ class MyApp extends StatelessWidget {
 	- Firebase Console → Project settings (รูปเฟือง) → Cloud Messaging → Upload .p8 in APNs Authentication Key > Insert Key ID and Team ID
 	- In Xcode > Runner > Targets Runner > Build Settings > Signing > Code Signing Entitlements > change Debug, Profile, Release to `Runner/RunnerProfile.entitlements`
 	- Build and Run again.
-
+- Sent Noti message, in Firebase > Run Messaging > Create your first campaign > select Firebase Notification messages > Create > Insert Nofi title, text > Send test message > add TokenKey() and Sent
 </details>
 
 <hr>
