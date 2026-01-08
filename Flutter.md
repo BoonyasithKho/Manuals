@@ -221,20 +221,22 @@
 <hr>
 </details>
 
-<details><summary>Dart(101)</summary>
+<details><summary><b>Dart(101)</b></summary>
 <hr>
   
-## What is Dart?
+<details><summary>What is Dart?</summary>
  - **Dart** คือ ภาษา OOP ของ Google ใช้ทำ mobile/web/desktop/server ซึ่งเป็นภาษาสำหรับการพัฒนา Flutter
+</details>
 
-## Naming Convention
+<details><summary>Naming Convention</summary>
 
 - `camelCase` : สำหรับการตั้งชื่อตัวแปร โดยตัวแรกเป็นตัวพิมพ์เล็ก คั่นคำต่อไปด้วย ตัวอักษรพิมพ์ใหญ่ เช่น newProductPrice
 - `PascalCase` : สำหรับการตั้งชื่อ Class โดยตัวแรกเป็นตัวพิมพ์ใหญ่คั่นคำต่อไปด้วย ตัวอักษรพิมพ์ใหญ่ เช่น MyUserName
 - `snake_case` : สำหรับการตั้งชื่อ File or Folder โดยการใช้ตัวพิมพ์เล็ก คั่นคำต่อไปด้วย '\_' เช่น number_of_client
 - ชื่อ package : ตัวพิมพ์เล็กทั้งหมด
+</details>
 
-## Datatype
+<details><summary>Datatype</summary>
 
 - `int` : จำนวนเต็ม
 - `double` : ทศนิยม
@@ -247,6 +249,8 @@
 - `const` : ค่าคงที่ compile-time
 
 </details>
+</details>
+
 <details><summary>Widgets and Layouts</summary>
 <hr>
 
@@ -1948,6 +1952,7 @@ appStoreLink: 'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
 
 ````
 </details>
+
 <details><summary>Run in iOS</summary>
 <hr>
 	Flutter app without my usb cable connected
@@ -1955,6 +1960,7 @@ appStoreLink: 'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
 	flutter run --release
 <hr>
 </details>
+
 <details><summary>Exercise</summary>
 <hr>
 
