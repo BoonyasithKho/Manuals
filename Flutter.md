@@ -132,7 +132,7 @@
   flutter run
 ```
 
-    </details>
+</details>
 
   </blockquote>
     </details>
