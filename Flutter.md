@@ -981,7 +981,7 @@ body: GoogleMap(
 <hr>
 </details>
 
-<details><summary>Chart</summary><blockquote>
+<details><summary>Chart</summary></summary>
 <hr>
 
 <details><summary>Syncfusion_flutter_charts</summary>
@@ -1897,36 +1897,36 @@ return Scaffold(
 ...
 `
 
-                                        ```
-                                        Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
-                                        ```
+                                                ```
+                                                Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
+                                                ```
 
-                                    Bonus
-                                    เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
+                                            Bonus
+                                            เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
 
-                                    ```dart
-                                     ...
-                                     child: GestureDetector(
-                                       child: Flag.fromCode(
-                                         context.locale.languageCode == 'en'
-                                           ? FlagsCode.TH
-                                           : FlagsCode.GB, // Union Jack
-                                         width: 30,
-                                       ),
-                                       onTap: () => setState(() {
-                                         if (context.locale.languageCode == 'en') {
-                                           context.setLocale(
-                                             Locale('th'),
-                                           );
-                                         } else {
-                                           context.setLocale(
-                                             Locale('en'),
-                                           );
-                                         }
-                                       }),
-                                     ),
-                                     ...
-                                    ```
+                                            ```dart
+                                             ...
+                                             child: GestureDetector(
+                                               child: Flag.fromCode(
+                                                 context.locale.languageCode == 'en'
+                                                   ? FlagsCode.TH
+                                                   : FlagsCode.GB, // Union Jack
+                                                 width: 30,
+                                               ),
+                                               onTap: () => setState(() {
+                                                 if (context.locale.languageCode == 'en') {
+                                                   context.setLocale(
+                                                     Locale('th'),
+                                                   );
+                                                 } else {
+                                                   context.setLocale(
+                                                     Locale('en'),
+                                                   );
+                                                 }
+                                               }),
+                                             ),
+                                             ...
+                                            ```
 
 ````
 
