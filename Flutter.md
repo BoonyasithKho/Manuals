@@ -546,7 +546,7 @@
 <details><summary>Form and Validate</summary>
 <hr>
 
-## ⏭️ Form
+<details><summary>⏭️ Form</summary>
 
 - การสร้างแบบฟอร์ม คือ การรับข้อมูล (Input) จากผู้ใช้ เช่น ข้อความ ตัวเลข วันเวลา หรือตัวเลือกต่าง ๆ
 - การจัดรูปแบบฟอร์ม
@@ -612,15 +612,16 @@
 
   3. อ้างอิงค่า และใช้งานผ่าน controller
   4. ยกเลิกการใช้งาน
-     ```dart
+  `dart
      @override
      void dispose() {
        _text1.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
        super.dispose();
      }
-     ```
+     `
+  </details>
 
-## ⏭️ Validate
+<details><summary>⏭️ Validate</summary>
 
 - การ validate หรือการตรวจสอบความถูกต้องของข้อมูลใน TextFormField จะกำหนด callback ฟังก์ชั่นให้กับ validator property เงื่อนไขการตรวจสอบก็ขึ้นกับรูปแบบตามที่ต้องการ
 - callback ฟังก์ชัน จะทำงานเมื่อฟอร์มมีการตรวจสอบความถูกต้อง หรือก็คือเมื่อใช้คำสั่ง validate() อย่างในตัวอย่าง
@@ -713,27 +714,29 @@
   - ติดตั้ง form_field_validator
   - ตัวอย่างการเรียกใช้งาน
 
-    ````dart
-    // แบบเงื่อนไขเดียว
-    TextFormField(
-    autovalidateMode: AutovalidateMode.always,
-    validator: RequiredValidator(errorText: 'this field is required'),
-    ),
-
-        // แบบหลายเงื่อนไข
+        ````dart
+        // แบบเงื่อนไขเดียว
         TextFormField(
-          autovalidateMode: AutovalidateMode.always,
-          validator: MultiValidator([
-            RequiredValidator(errorText: 'Please enter some text'),
-            // EmailValidator(errorText: 'Please enter a valid email'),
-            MinLengthValidator(4, errorText: 'Please enter 4 digit'),
-            PatternValidator(r'^([0-9])+$', errorText: 'Only numberic'),
-            RangeValidator(min: 2000, max: 3000, errorText: 'Please enter a number between 2000 and 3000'),
-         ]),
-        ```
-    ````
+        autovalidateMode: AutovalidateMode.always,
+        validator: RequiredValidator(errorText: 'this field is required'),
+        ),
 
-</details>
+            // แบบหลายเงื่อนไข
+            TextFormField(
+              autovalidateMode: AutovalidateMode.always,
+              validator: MultiValidator([
+                RequiredValidator(errorText: 'Please enter some text'),
+                // EmailValidator(errorText: 'Please enter a valid email'),
+                MinLengthValidator(4, errorText: 'Please enter 4 digit'),
+                PatternValidator(r'^([0-9])+$', errorText: 'Only numberic'),
+                RangeValidator(min: 2000, max: 3000, errorText: 'Please enter a number between 2000 and 3000'),
+             ]),
+            ```
+        ````
+
+    </details>
+    <hr>
+    </details>
 
 <details><summary>Map</summary>
 <hr>
