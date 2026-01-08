@@ -113,34 +113,29 @@
 </details>
 
 <details><summary>📍 Create Project</summary>
+<blockquote>
 
-- วิธี VS Code
+<details><summary>🏷️ วิธี VS Code</summary>
 
-  1. Open VS Code > Invoke View > Command Palette
-  2. Type “flutter”, and select the **Flutter: New Project**
-  3. Select Application
-  4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
-  5. Wait for project creation to complete and the main.dart file to appear
-
-- วิธี CLI
-
-  ```bash
-    flutter create my_first_app
-    cd my_first_app
-    flutter run
-  ```
-
-  </details>
-
-<details><summary>📍 Run the app</summary>
-
-- เลือก device/simulator จากแถบล่างของ VS Code
-- Invoke Run > Start Debugging
-- Wait for the app to launch—progress is printed in the Debug Console view
-- After the app build completes, you’ll see the starter app on your device
-- Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
-- Save and Hot Reload
+1. Open VS Code > Invoke View > Command Palette
+2. Type “flutter”, and select the **Flutter: New Project**
+3. Select Application
+4. Select directory for project > Enter a project name **Note!** The name should be all lowercase, with underscores to separate words (my_first_app)
+5. Wait for project creation to complete and the main.dart file to appear
 </details>
+
+<details><summary>🏷️ วิธี CLI</summary>
+
+```bash
+  flutter create my_first_app
+  cd my_first_app
+  flutter run
+```
+
+    </details>
+
+  </blockquote>
+    </details>
 
 <details><summary>📍 Structure of Project</summary>
 
@@ -151,6 +146,16 @@
 - 🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
 - 🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
+</details>
+
+<details><summary>📍 Run the app</summary>
+
+- เลือก device/simulator จากแถบล่างของ VS Code
+- Invoke Run > Start Debugging
+- Wait for the app to launch—progress is printed in the Debug Console view
+- After the app build completes, you’ll see the starter app on your device
+- Change the string `` You have `pushed` the button this many times `` > `` You have `clicked` the button this many times ``
+- Save and Hot Reload
 </details>
 
 <details><summary>📍 First Project with Flutter</summary>
