@@ -1238,7 +1238,7 @@ body: GoogleMap(
 
 <details><summary>Flutter Firebase</summary>
 <hr>
-
+<details><summary>What is Firebase?</summary>
 1.  Firebase คือ ฐานข้อมูลประเภท NoSQL ซึ่งไม่ใช้ภาษา SQL ในการจัดการข้อมูล ถูกออกแบบให้มีความยืดหยุ่นต่อการใช้งานและเน้นความรวดเร็วในการใช้งาน มีการเก็บข้อมูลในรูปแบบของ JSON ทำให้สามารถเพิ่มข้อมูลไปใน Object ใดๆ ก็ได้ แต่จะไม่สามารถเก็บเป็น Array ได้ ถ้าต้องการเพิ่มข้อมูลแบบอาร์เรย์จะต้องใช้การ Put ข้อมูลเข้าไปต่อท้ายเรื่อยๆ และจะมีการสร้าง Key ไว้ใช้สำหรับการอ้างอิง
 2.  โครงสร้างการเก็บข้อมูลบน Cloud Firebase จะมีการเก็บแบบ Document Database ทั้งหมด 3 ส่วน คือ
     - Collection : เป็นเหมือน Folder ที่ไว้เก็บเอกสาร และมีชื่อบอกว่าเก็บเอกสารเกี่ยวกับอะไร
@@ -1408,6 +1408,12 @@ body: GoogleMap(
 - ติดตั้ง Package cloud_firestore
 - สร้าง Collection สำหรับใช้ในการเก็บข้อมูล ด้วยคำสั่ง CollectionReference \_nameCollection = FirebaseFirestore.instance.collection(’Collection_Name’)
 - ในปุ่มสำหรับการอัพโหลดข้อมูลให้ทำการเช็คการทำงานด้วย async และ await
+</details>
+<details><summary>Notice using Firebase?</summary>
+
+
+</details>
+
 <hr>
 </details>
 
