@@ -1233,7 +1233,7 @@ body: GoogleMap(
   - Path : อ้างอิงตำแหน่งที่เก็บฐานข้อมูล
 - การสร้าง Store คือ การระบุที่จัดเก็บข้อมูลในแอพว่าชื่ออะไร มีรูปแบบการจัดเก็บข้อมูลแบบใด (คล้ายๆกับการสร้างตารางในฐานข้อมูล) โดยใช้ intMapStoreFactory
 - การทำงานของ Snapshot เป็นส่วนของการแก้ปัญหาการเก็บข้อมูลที่มีสภาพแวดล้อมที่แตกต่างกัน เช่น การเก็บข้อมูลใน Android หรือ iOS สภาพแวดล้อมของแต่ละ Platform แตกต่างกันโดยสิ้นเชิง ส่งผลให้การจัดการข้อมูลมีความยุ่งยากไปด้วย จึงมีแนวคิดในการสร้างประเภทข้อมูลที่สามารถทำให้ข้อมูลทำงานได้ในสภาพแวดล้อมต่างกันที่เรียกว่า RecordSnapshot
-
+<hr>
 </details>
 
 <details><summary>Flutter Firebase</summary>
@@ -1286,19 +1286,22 @@ body: GoogleMap(
 
     และ add both the google-services plugin and any Firebase SDKs that you want to use ใน Module (app-level) Gradle file (<project>/<app-module>/build.gradle):
 
-        plugins {
-          id 'com.android.application'
-          // Add the Google services Gradle plugin
-          id 'com.google.gms.google-services'
-          ...
-        }
-        dependencies {
-          // Import the Firebase BoM
-          implementation platform('com.google.firebase:firebase-bom:31.2.3')
-          // TODO: Add the dependencies for Firebase products you want to use
-          // When using the BoM, don't specify versions in Firebase dependencies
-          // https://firebase.google.com/docs/android/setup#available-libraries
-        }
+        ```
+          plugins {
+            id 'com.android.application'
+            // Add the Google services Gradle plugin
+            id 'com.google.gms.google-services'
+            ...
+          }
+          dependencies {
+            // Import the Firebase BoM
+            implementation platform('com.google.firebase:firebase-bom:31.2.3')
+            // TODO: Add the dependencies for Firebase products you want to use
+            // When using the BoM, don't specify versions in Firebase dependencies
+            // https://firebase.google.com/docs/android/setup#available-libraries
+          }
+
+        ```
 
 5.  การเชื่อมโยง Firebase Authentication เข้ามาใน Flutter Project
     1. ทำการ Login >> `firebase login`
@@ -1374,14 +1377,38 @@ body: GoogleMap(
           // Navigator.pop(context);
         }
         ```
-6.  การเขื่อมโยง Firebase เข้ามาใน Flutter Project 1. เลือก Firebase Project ที่ต้องการ 2. สร้าง Firestore Database ที่ Cloud Firestore ในแบบ test mode 3. ในหน้า Cloud Firestore คลิก Create database > Start in test mode > Set Cloud Firestore location “asia-east2” > enable 4. ทำการเพิ่ม App เข้าไปใน Firebase Project 5. ขั้นตอนที่ 1 ของการเพิ่ม Firebase ใน Flutter App ทำตามขั้นตอนการติดตั้ง Firebase CLI ด้วย Command => curl -sL https://firebase.tools | bash 6. ทดสอบการ Login ด้วย Command => firebase login 7. แสดงรายการของ Firebase Project ด้วย Command => firebase projects:list 8. ทำการ Initial Firebase ใน Project ด้วย Command => firebase init ซึ่งจะได้ไฟล์ firebase.json และ .firebaserc 9. ขั้นตอนที่ 2 ของการเพิ่ม Firebase ใน Flutter App ใน Terminal ทำการรัน Command => dart pub global activate flutterfire_cli 10. จากนั้นทำการ Config ตาม Project ด้วย Command => flutterfire configure --project=“Project Name” หลังจากทำการติดตั้งเสร็จสิ้นจะได้ไฟล์ firebase_option.dart ในโฟลเดอร์ lib 11. ติดตั้ง Package Firebase_core ใน pubspec.yaml จากนั้นแก้ไขตามแต่ละ OS 1. ใน iOS Folder สั่ง => pod install 2. ใน Android ทำการแก้ไข minSDKVersion => 21 (android > app > build.gradle) และเพิ่ม multiDexEnabled true 12. แก้ไข main() ให้เป็น
-`dart
+6.  การเขื่อมโยง Firebase เข้ามาใน Flutter Project
+
+- เลือก Firebase Project ที่ต้องการ
+- สร้าง Firestore Database ที่ Cloud Firestore ในแบบ test mode
+- ในหน้า Cloud Firestore คลิก Create database > Start in test mode > Set Cloud Firestore location “asia-east2” > enable
+- ทำการเพิ่ม App เข้าไปใน Firebase Project
+- ขั้นตอนที่ 1 ของการเพิ่ม Firebase ใน Flutter App ทำตามขั้นตอนการติดตั้ง Firebase CLI ด้วย Command => curl -sL https://firebase.tools | bash
+- ทดสอบการ Login ด้วย Command => firebase login
+- แสดงรายการของ Firebase Project ด้วย Command => firebase projects:list
+- ทำการ Initial Firebase ใน Project ด้วย Command => firebase init ซึ่งจะได้ไฟล์ firebase.json และ .firebaserc
+- ขั้นตอนที่ 2 ของการเพิ่ม Firebase ใน Flutter App ใน Terminal ทำการรัน Command => dart pub global activate flutterfire_cli
+- จากนั้นทำการ Config ตาม Project ด้วย Command => flutterfire configure --project=“Project Name” หลังจากทำการติดตั้งเสร็จสิ้นจะได้ไฟล์ firebase_option.dart ในโฟลเดอร์ lib
+- ติดตั้ง Package Firebase_core ใน pubspec.yaml จากนั้นแก้ไขตามแต่ละ OS
+  - ใน iOS Folder สั่ง => pod install
+  - ใน Android ทำการแก้ไข minSDKVersion => 21 (android > app > build.gradle) และเพิ่ม multiDexEnabled true
+- แก้ไข main() ให้เป็น
+
+```dart
 		Future<void> main(List<String> args) async {
   			WidgetsFlutterBinding.ensureInitialized();
   			await Firebase.initializeApp();
   			runApp(MyApp());
 		}
-    ` 13. ทำการ Initial Firebase ด้วยคำสั่ง => Future<FirebaseApp> firebase = Firebase.initializeApp(); 14. ตรวจสอบการ Connection ใน FutureBuilder ด้วย snapshot ถ้ามี Error ให้ทำการแสดง Error 15. ตรวจสอบความสมบูรณ์ของการเชื่อมต่อด้วย snapshot.connectionState == ConnectionState.done 16. ติดตั้ง Package cloud_firestore 17. สร้าง Collection สำหรับใช้ในการเก็บข้อมูล ด้วยคำสั่ง CollectionReference \_nameCollection = FirebaseFirestore.instance.collection(’Collection_Name’) 18. ในปุ่มสำหรับการอัพโหลดข้อมูลให้ทำการเช็คการทำงานด้วย async และ await
+```
+
+- ทำการ Initial Firebase ด้วยคำสั่ง => Future<FirebaseApp> firebase = Firebase.initializeApp();
+- ตรวจสอบการ Connection ใน FutureBuilder ด้วย snapshot ถ้ามี Error ให้ทำการแสดง Error
+- ตรวจสอบความสมบูรณ์ของการเชื่อมต่อด้วย snapshot.connectionState == ConnectionState.done
+- ติดตั้ง Package cloud_firestore
+- สร้าง Collection สำหรับใช้ในการเก็บข้อมูล ด้วยคำสั่ง CollectionReference \_nameCollection = FirebaseFirestore.instance.collection(’Collection_Name’)
+- ในปุ่มสำหรับการอัพโหลดข้อมูลให้ทำการเช็คการทำงานด้วย async และ await
+<hr>
 </details>
 
 <details><summary>Radio Button</summary>
@@ -1897,36 +1924,36 @@ return Scaffold(
 ...
 `
 
-                                                ```
-                                                Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
-                                                ```
+                                                                                                                                        ```
+                                                                                                                                        Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
+                                                                                                                                        ```
 
-                                            Bonus
-                                            เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
+                                                                                                                                    Bonus
+                                                                                                                                    เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
 
-                                            ```dart
-                                             ...
-                                             child: GestureDetector(
-                                               child: Flag.fromCode(
-                                                 context.locale.languageCode == 'en'
-                                                   ? FlagsCode.TH
-                                                   : FlagsCode.GB, // Union Jack
-                                                 width: 30,
-                                               ),
-                                               onTap: () => setState(() {
-                                                 if (context.locale.languageCode == 'en') {
-                                                   context.setLocale(
-                                                     Locale('th'),
-                                                   );
-                                                 } else {
-                                                   context.setLocale(
-                                                     Locale('en'),
-                                                   );
-                                                 }
-                                               }),
-                                             ),
-                                             ...
-                                            ```
+                                                                                                                                    ```dart
+                                                                                                                                     ...
+                                                                                                                                     child: GestureDetector(
+                                                                                                                                       child: Flag.fromCode(
+                                                                                                                                         context.locale.languageCode == 'en'
+                                                                                                                                           ? FlagsCode.TH
+                                                                                                                                           : FlagsCode.GB, // Union Jack
+                                                                                                                                         width: 30,
+                                                                                                                                       ),
+                                                                                                                                       onTap: () => setState(() {
+                                                                                                                                         if (context.locale.languageCode == 'en') {
+                                                                                                                                           context.setLocale(
+                                                                                                                                             Locale('th'),
+                                                                                                                                           );
+                                                                                                                                         } else {
+                                                                                                                                           context.setLocale(
+                                                                                                                                             Locale('en'),
+                                                                                                                                           );
+                                                                                                                                         }
+                                                                                                                                       }),
+                                                                                                                                     ),
+                                                                                                                                     ...
+                                                                                                                                    ```
 
 ````
 
