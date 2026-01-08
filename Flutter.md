@@ -1510,6 +1510,7 @@ import 'firebase_options.dart';
 import 'firebase_msg.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+@pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // handle background data here
@@ -1552,10 +1553,10 @@ class MyApp extends StatelessWidget {
 }
 
 ```
-- For iOS, edit `Podfile` for update # platform :ios, '13.0' > '15.0'.
+- For iOS, edit `Podfile` for update # platform :ios, '13.0' > '15.6'.
 	- It can already run but not show Token ID. You must test app in real phone to test.
 	- open project in Xcode
-	- Add Push Notifications, in Runner > Target Runner > signing & capabilities > + Capability > Select Push Notifications > กด Push notification Console > Login to https://icloud.developer.apple.com/ > Enable Push Notifications
+	- Add Push Notifications, in Runner > Target Runner > signing & capabilities > + Capability > Select Push Notifications > กด Push notification Console > Login to [developer.apple.com/account](developer.apple.com/account) > Enable Push Notifications
  	- Add Background Mode, in Runner > Target Runner > signing & capabilities > + Capability > Select Background Modes > กด Remote notifications
 	- In firebase, Setting Project > Cloud Messaging > Add APNs Authentication Key from `https://developer.apple.com/account` > Certificates, IDs & Profiles > Keys > Add new Keys > Insert name and select Apple Push Notifications service (APNs) > Configure > Environment > Sandbox & Production > Save > Continue > Register > Select Key ID > Download file.p8 >  Copy Key ID and Team ID (อยู่ในหน้า Membership หรือมุมบน/รายละเอียดทีม)
 	- Firebase Console → Project settings (รูปเฟือง) → Cloud Messaging → Upload .p8 in APNs Authentication Key > Insert Key ID and Team ID
