@@ -1414,7 +1414,7 @@ body: GoogleMap(
 <details><summary>Radio Button</summary>
 <hr>
 
-## 🔘 Radio Button
+<details><summary>🔘 Radio Button</summary>
 
 ```dart
 Radio(
@@ -1440,8 +1440,9 @@ Radio(
     ```
 - The ‘activeColor‘ property decides the active color of the radio button.
 - The ‘onChanged‘ returns the current radio button’s value.
+</details>
 
-## 🔘 RadioListTile
+<details><summary>🔘 RadioListTile</summary>
 
 RadioListTile gives us more control over the normal one. It has additional ‘title‘ and ‘subtitle‘ property and a ‘secondary‘ widget. Here I am setting the ‘secondary‘ widget to an ElevatedButton for now.
 
@@ -1466,7 +1467,9 @@ RadioListTile(
 ),
 ```
 
-## 🔘 Radio Group Using Objects
+</details>
+
+<details><summary>🔘 Radio Group Using Objects</summary>
 
 - Create a new file named ‘user.dart’ and copy these contents.
 
@@ -1698,6 +1701,8 @@ RadioListTile(
 - Credit : https://vipinvijayannair.medium.com/radiobuttons-radiolisttile-in-flutter-dee3013a70b1
 
 </details>
+<hr>
+</details>
 
 <details><summary>Pull to update</summary>
 <hr>
@@ -1924,36 +1929,36 @@ return Scaffold(
 ...
 `
 
-                                                                                                                                        ```
-                                                                                                                                        Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
-                                                                                                                                        ```
+                                                                                                                                                        ```
+                                                                                                                                                        Note: แม้จะปิดแอปเปิดใหม่ ภาษาที่เราเปลี่ยนก็จะยังคงอยู่ เพราะ Library นี้มีการบันทึกค่าภาษาลงใน Shared Preferences
+                                                                                                                                                        ```
 
-                                                                                                                                    Bonus
-                                                                                                                                    เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
+                                                                                                                                                    Bonus
+                                                                                                                                                    เปลี่ยน Textbutton สำหรับการเปลี่ยนภาษาเป็นรูปธงชาติ ด้วย flag
 
-                                                                                                                                    ```dart
-                                                                                                                                     ...
-                                                                                                                                     child: GestureDetector(
-                                                                                                                                       child: Flag.fromCode(
-                                                                                                                                         context.locale.languageCode == 'en'
-                                                                                                                                           ? FlagsCode.TH
-                                                                                                                                           : FlagsCode.GB, // Union Jack
-                                                                                                                                         width: 30,
-                                                                                                                                       ),
-                                                                                                                                       onTap: () => setState(() {
-                                                                                                                                         if (context.locale.languageCode == 'en') {
-                                                                                                                                           context.setLocale(
-                                                                                                                                             Locale('th'),
-                                                                                                                                           );
-                                                                                                                                         } else {
-                                                                                                                                           context.setLocale(
-                                                                                                                                             Locale('en'),
-                                                                                                                                           );
-                                                                                                                                         }
-                                                                                                                                       }),
-                                                                                                                                     ),
-                                                                                                                                     ...
-                                                                                                                                    ```
+                                                                                                                                                    ```dart
+                                                                                                                                                     ...
+                                                                                                                                                     child: GestureDetector(
+                                                                                                                                                       child: Flag.fromCode(
+                                                                                                                                                         context.locale.languageCode == 'en'
+                                                                                                                                                           ? FlagsCode.TH
+                                                                                                                                                           : FlagsCode.GB, // Union Jack
+                                                                                                                                                         width: 30,
+                                                                                                                                                       ),
+                                                                                                                                                       onTap: () => setState(() {
+                                                                                                                                                         if (context.locale.languageCode == 'en') {
+                                                                                                                                                           context.setLocale(
+                                                                                                                                                             Locale('th'),
+                                                                                                                                                           );
+                                                                                                                                                         } else {
+                                                                                                                                                           context.setLocale(
+                                                                                                                                                             Locale('en'),
+                                                                                                                                                           );
+                                                                                                                                                         }
+                                                                                                                                                       }),
+                                                                                                                                                     ),
+                                                                                                                                                     ...
+                                                                                                                                                    ```
 
 ````
 
