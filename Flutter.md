@@ -613,13 +613,13 @@
   3. อ้างอิงค่า และใช้งานผ่าน controller
   4. ยกเลิกการใช้งาน
   `dart
-   @override
-   void dispose() {
-     _text1.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
-     super.dispose();
-   }
-   `
-  </details>
+@override
+void dispose() {
+  _text1.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
+  super.dispose();
+}
+`
+   </details>
 
 <details><summary>⏭️ Validate</summary>
 
@@ -817,16 +817,16 @@
     ```
   - การใช้งาน GoogleMap จะต้องทำการ initialCameraPosition เสมอ เพื่อกำหนดพิกัดจุดเริ่มต้นสถานที่ให้ GoogleMap ทำการแสดงผล
   `dart
-    body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(13.757429, 100.502465), //กำหนดพิกัดเริ่มต้นบนแผนที่
-          zoom: 15, //กำหนดระยะการซูม สามารถกำหนดค่าได้ 0-20
-        ),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-    `
+body: GoogleMap(
+    initialCameraPosition: CameraPosition(
+      target: LatLng(13.757429, 100.502465), //กำหนดพิกัดเริ่มต้นบนแผนที่
+      zoom: 15, //กำหนดระยะการซูม สามารถกำหนดค่าได้ 0-20
+    ),
+    onMapCreated: (GoogleMapController controller) {
+      _controller.complete(controller);
+    },
+  ),
+`
   </details>
 
 <details><summary>🗺️ Flutter Map</summary>
@@ -936,7 +936,8 @@
    ```
 3. นำ datetime ไปใส่ใน Text widget
 4. Change date with datepicker with icon `Icons.arrow_drop_down`
-`dart
+
+````dart
     IconButton(
         onPressed: () async {
             DateTime? pickedData = await showDatePicker(
@@ -953,7 +954,7 @@
         },
         icon: const Icon(Icons.arrow_drop_down),
     ),
-    `
+    ```
 </details>
 
 <details><summary>Change Application Icon</summary>
@@ -969,7 +970,8 @@
      image_path: "assets/icons/bar-chart.png"
      adaptive_icon_background: "#ed1e79"
      adaptive_icon_foreground: "assets/icons/bar-chart_fore.png"
-   ```
+````
+
 4. In terminal, use `flutter pub run flutter_launcher_icons:main` for run the app and verify the new launcher icon updated in the launcher app for both Android and iOS.
 
 </details>
