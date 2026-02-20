@@ -2157,6 +2157,60 @@ class _MyAppState extends State<MyApp> {
 <hr>
 </details>
 
+<details><summary>Deploy</summary>
+<hr>
+	เตรียมก่อน Deploy ทำครั้งเดียว
+
+1. อัปเดตเวอร์ชันแอป ใน pubspec.yaml
+2. ตั้งค่า Icon ด้วย Package : flutter_launcher_icons แล้ว generate ให้เรียบร้อย
+
+<hr>
+	Deploy บน Android (Google Play)
+
+1. สร้าง Keystore สำหรับเซ็นแอป (ครั้งเดียว) เก็บไฟล์ไว้ในที่ปลอดภัย (ห้ามหาย)
+
+   ```bash
+	keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+   ```
+   
+2. ผูก Keystore ในโปรเจกต์
+
+	- สร้างไฟล์ android/key.properties
+
+		```
+	 	storePassword=YOUR_STORE_PASSWORD
+	 	keyPassword=YOUR_KEY_PASSWORD
+	 	keyAlias=upload
+	 	storeFile=../upload-keystore.jks
+	  	```
+  
+	- Build แบบ Release
+		```
+  		flutter build appbundle --release
+		```
+
+3. อัปโหลดขึ้น Google Play Console
+   	- เข้า Google Play Console → Create app
+   	- Set up รายการสำคัญ:
+   		- App details, Privacy Policy URL
+   	 	- Content rating
+   	  	- Data safety (สำคัญมาก)
+   	  	- Target audience
+   	- ไปที่ Production (หรือ Internal testing ก่อน) → Create new release
+   	- อัปโหลด app-release.aab
+   	- ส่งตรวจ (Review) แล้วรออนุมัติ
+
+<hr>
+	Deploy บน iOS (App Store)
+
+1. สิ่งที่ต้องมี
+   - macOS + Xcode
+   - Apple Developer Program
+   - เปิดโปรเจกต์ iOS ด้วย:
+2. 
+
+</details>
+
 <details><summary>Run in iOS</summary>
 <hr>
 	Flutter app without my usb cable connected
