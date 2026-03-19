@@ -146,6 +146,11 @@
 - 🗄️ `pubspec.yaml` ใช้สำหรับการตั้งค่าต่าง ๆ ให้กับโปรเจคหรือการเรียกใช้งานไลบราลีต่าง ๆ การประกาศไลบราลี ไอคอน ต้องทำการตั้งค่าในไฟล์นี้
 - 🗄️ `README.md` This file provides information about your Flutter project, such as how to install and run it
 
+- ชุดคำสั่งเพื่อเตรียมโครงการข้อมูล
+	```
+	mkdir assets/images assets/fonts assets/launcher
+	mkdir lib/bloc lib/models lib/screens lib/utils lib/widgets
+	```
 </details>
 
 <details><summary>📍 Run the app</summary>
