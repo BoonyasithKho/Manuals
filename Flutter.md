@@ -151,6 +151,12 @@
 	mkdir assets/images assets/fonts assets/launcher
 	mkdir lib/bloc lib/models lib/screens lib/utils lib/widgets
 	```
+- สร้างไฟล์ที่จำเป็น
+  	```
+   	touch lib/screens/app.dart
+   	touch lib/utils/my_api.dart lib/utils/my_asset.dart lib/utils/my_constant.dart lib/utils/my_textstyle.dart
+   	touch lib/widgets/show_text.dart lib/widgets/show_image.dart lib/widgets/show_svg.dart 
+   	```
 </details>
 
 <details><summary>📍 Run the app</summary>
