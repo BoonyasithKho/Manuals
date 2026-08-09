@@ -1,10 +1,30 @@
 # :wave: Welcome to Docker Manual's for Application Development
 
-<details><summary>📍 ครอบตลุมการพัฒนาเว็บและโมบายแอปพลิเคชัน</summary>
+<details><summary>📍 ครอบคลุม 4 ส่วน</summary>
+    - Web Application Development
+    - Mobile Application Development
+    - Web Service (API) Delevelopment
+    - Database : PostgreSQL
+  </details>
 
-- **ประกอบด้วย 4 ส่วน** 
-  - Web Application Development
-  - Mobile Application Development
-  - Web Service (API) Delevelopment
-  - Database : PostgreSQL
+<details><summary>📍 โครงสร้าง Project</summary>
+    project-root/
+    │
+    ├── docker-compose.yml
+    ├── .env
+    │
+    ├── backend/
+    │   ├── Dockerfile
+    │   ├── package.json
+    │   ├── package-lock.json
+    │   └── src/
+    │       ├── index.js
+    │       └── db.js
+    │
+    └── web-app/
+        ├── Dockerfile
+        ├── package.json
+        ├── package-lock.json
+        ├── vite.config.js
+        └── src/
   </details>
