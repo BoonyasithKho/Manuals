@@ -8,6 +8,7 @@
   </details>
 
 <details><summary>📍 โครงสร้าง Project</summary>
+
     ```
     project-root/
     │
@@ -29,4 +30,5 @@
         ├── vite.config.js
         └── src/
     ```
+    
   </details>
