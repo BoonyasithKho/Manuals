@@ -8,6 +8,7 @@
   </details>
 
 <details><summary>📍 โครงสร้าง Project</summary>
+    ```
     project-root/
     │
     ├── docker-compose.yml
@@ -27,4 +28,5 @@
         ├── package-lock.json
         ├── vite.config.js
         └── src/
+    ```
   </details>
