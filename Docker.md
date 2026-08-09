@@ -70,12 +70,19 @@ project-root/
 POSTGRES_DB=your_database
 POSTGRES_USER=your_username
 POSTGRES_PASSWORD=your_password
+POSTGRES_HOST=postgres
+POSTGRES_HOST=5432
 
-DB_HOST=postgres
-DB_PORT=5432
 DB_NAME=your_database
 DB_USER=your_username
 DB_PASSWORD=your_password
+
+DATABASE_URL=postgresql://gistda_postgresuser:gistda_password@db:5432/burncheck_db
+
+BACKEND_PORT=8000
+FRONTEND_PORT=3000
+
+JWT_SECRET=burncheck_secret_key_dev
 ```
 
 > ควรแก้ไขค่าต่าง ๆ ให้ตรงกับการตั้งค่าของระบบจริง และไม่ควร commit รหัสผ่านหรือข้อมูลสำคัญลง Git Repository
