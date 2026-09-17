@@ -42,8 +42,11 @@
   ```
 
 - วิธีเชื่อมต่อ venv เข้ากับ VS Code
+
   กดปุ่ม Cmd + Shift + P บนคีย์บอร์ดพร้อมกันเพื่อเปิด Command Palette
+  
   พิมพ์คำว่า Python: Select Interpreter แล้วกด Enter
+  
   เลือกตัวเลือกที่มีคำว่า ('env': venv) หรือ (.venv) นำหน้า
 
 - 
